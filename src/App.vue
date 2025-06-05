@@ -1,47 +1,35 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
   </header>
 
   <main>
-    <TheWelcome />
+
+    <!-- title -->
+    <h1>SupportShelf</h1>
+    <!-- description -->
+    <p>Your all in one mental health resource.</p>
+
+    <h3>What are you looking for?</h3>
+
+    <ul>
+      <!-- list of links -->
+      <a href="why.html">Why?</a>
+      <a href="support.html">Support Providers</a>
+      <a href="hotlines.html">Hotlines</a>
+      <a href="articles.html">Articles</a>
+    </ul>
   </main>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  main {
+    line-height: 2;
+    text-align: center;
+    margin: 0;
+    padding-top: 40vh;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
