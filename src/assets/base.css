@@ -10,9 +10,8 @@
 :root {
   --color-background: var(--vt-c-darkblue);
 
-  --color-border: var(--vt-c-mediumblue);
-
-  --color-heading: var(--vt-c-yellow);
+  --color-bigheading: var(--vt-c-yellow);
+  --color-heading: var(--vt-c-mediumblue);
   --color-text: var(--vt-c-softwhite);
 
   --section-gap: 160px;
@@ -22,9 +21,8 @@
   :root {
     --color-background: var(--vt-c-darkblue);
   
-    --color-border: var(--vt-c-mediumblue);
-
-    --color-heading: var(--vt-c-yellow);
+    --color-bigheading: var(--vt-c-yellow);
+    --color-heading: var(--vt-c-mediumblue);
     --color-text: var(--vt-c-softwhite);
   }
 }
@@ -34,6 +32,7 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
   font-weight: normal;
 }
 
@@ -58,8 +57,54 @@ body {
     'Droid Sans',
     'Helvetica Neue',
     sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 1rem;
+}
+
+/* supportshelf big heading */
+h1 {
+  text-align: left;
+  padding-left: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-bigheading); 
+}
+
+/* supportshelf mini heading */
+h2 {
+  text-align: left;
+  padding-left: 2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-bigheading);
+  margin-bottom: 0.5rem;
+}
+
+/* what are you looking for? */
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-heading);
+  gap: 0.5rem;
+  color: var(--color-heading);
+}
+
+p {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
 }

@@ -1,15 +1,18 @@
 <template>
   <main>
     <h1>SupportShelf</h1>
-    <p>Your all-in-one mental health resource.</p>
+    <h2>Your all-in-one mental health resource.</h2>
 
-    <h3>What are you looking for?</h3>
-    <ul>
-      <li><router-link to="/why">Why?</router-link></li>
-      <li><router-link to="/support">Support Providers</router-link></li>
-      <li><router-link to="/hotlines">Hotlines</router-link></li>
-      <li><router-link to="/articles">Articles</router-link></li>
-    </ul>
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/why">Why?</router-link> |
+      <router-link to="/support">Support Providers</router-link> |
+      <router-link to="/hotlines">Hotlines</router-link> |
+      <router-link to="/articles">Articles</router-link>
+    </nav>
+
+    <p>
+    </p>
   </main>
 </template>
 
@@ -18,3 +21,4 @@ export default {
     name: 'Home'
 }
 </script>
+
