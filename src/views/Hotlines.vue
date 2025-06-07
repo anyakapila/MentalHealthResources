@@ -14,7 +14,7 @@
     <p>
       <ul>
         <strong>National Crisis and Suicide Lifeline</strong>: 988<br>
-        <strong>Crisis Text Line</strong>: "Text "HOME" to 741741<br>
+        <strong>Crisis Text Line</strong>: Text "HOME" to 741741<br>
         <strong>National Domestic Violence Hotline</strong>: (800) 799-7233<br>
         <strong>National Sexual Assault Hotline</strong>: (800) 656-4673<br>
         <strong>National Human Trafficking Hotline</strong>: (888) 373-7888<br>

@@ -11,7 +11,26 @@
       <router-link to="/articles">Articles</router-link>
     </nav>
 
-    <p>
+    <p> 
+    <providers> 
+    <strong>What are you looking for?</strong><br>
+    <li>Therapists</li>
+    <li>Psychiatrists</li>
+    <li>Group Therapy/Support Groups</li>
+    <li>Treatment Centers</li><br>
+    </providers>
+
+    <filters>
+    <strong>Filters</strong><br>
+    <li>In Person</li>
+    <li>Online</li>
+    <li>$$/Insurance</li>
+    <li>Hours/Flexibility</li>
+    <li>Specializations</li>
+    <li>Gender</li>
+    </filters>
+
     </p>
+
   </main>
 </template>
