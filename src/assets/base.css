@@ -64,10 +64,25 @@ body {
   padding: 1rem;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 /* supportshelf big heading */
 h1 {
   text-align: left;
-  padding-left: 2rem;
+  padding-left: 1rem;
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-bigheading); 
@@ -76,18 +91,10 @@ h1 {
 /* supportshelf mini heading */
 h2 {
   text-align: left;
-  padding-left: 2rem;
+  padding-left: 1rem;
   font-size: 1rem;
   font-weight: 400;
   color: var(--color-bigheading);
-  margin-bottom: 0.5rem;
-}
-
-/* what are you looking for? */
-h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--color-text);
   margin-bottom: 0.5rem;
 }
 
@@ -108,3 +115,13 @@ p {
   color: var(--color-text);
   margin-bottom: 1rem;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 125px;
+  width: 100%;
+  height: auto;
+}
+

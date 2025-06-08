@@ -1,7 +1,12 @@
 <template>
   <main>
-    <h1>Support Providers</h1>
-    <h2>Find the therapist, psychiatrist, or other support provider for you.</h2>
+    <div class="header">
+      <img src="@/assets/newlogo.png" alt="Logo" class="logo"/>
+      <div class="header-text">
+        <h1>Support Providers</h1>
+        <h2>Find the therapist, psychiatrist, or other support provider for you.</h2>
+      </div>
+    </div>
 
     <nav>
       <router-link to="/">Home</router-link> |

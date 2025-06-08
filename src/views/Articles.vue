@@ -1,8 +1,12 @@
 <template>
   <main>
-    <img src="@/assets/newlogo.png" alt="Logo" class="logo"/>
-    <h1>Articles</h1>
-    <h2>Find credible information, easily summarized.</h2>
+    <div class="header">
+      <img src="@/assets/newlogo.png" alt="Logo" class="logo"/>
+      <div class="header-text">
+        <h1>Articles</h1>
+        <h2>Find credible information, easily summarized.</h2>
+      </div>
+    </div>
 
     <nav>
       <router-link to="/">Home</router-link> |

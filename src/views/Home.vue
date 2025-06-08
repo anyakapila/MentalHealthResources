@@ -1,8 +1,12 @@
 <template>
   <main>
-    <h1>SupportShelf</h1>
-    <h2>Your all-in-one mental health resource.</h2>
-
+    <div class="header">
+      <img src="@/assets/newlogo.png" alt="Logo" class="logo"/>
+      <div class="header-text">
+        <h1>SupportShelf</h1>
+        <h2>Your all-in-one mental health resource.</h2>
+      </div>
+    </div>
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/why">Why?</router-link> |

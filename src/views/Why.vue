@@ -1,6 +1,12 @@
 <template>
   <main>
-    <h1>Why?</h1>
+    <div class="header">
+      <img src="@/assets/newlogo.png" alt="Logo" class="logo"/>
+      <div class="header-text">
+        <h1>Why?</h1>
+        <h2>The reason behind it all.</h2>
+      </div>
+    </div>
 
     <nav>
       <router-link to="/">Home</router-link> |
