@@ -20,16 +20,17 @@
 
     <p>
       As a high school student who has struggled with mental health issues, I decided to conduct a survey in my community to assess the accessibility of mental health-related resources to those who need them.
-      <br />
       The results show that many find it hard to get help easily, so I created this website to hopefully help with that.
-      <br />
+      <br><br>
       <strong>Here are some of the survey's most significant results:</strong><br>
+    </p>
+
+    <div class = "image-grid">
       <img src="@/assets/why1.png"/><br>
       <img src="@/assets/why2.png"/><br>
       <img src="@/assets/why3.png"/><br>
       <img src="@/assets/why4.png"/><br>
-    </p>
-
+    </div>
     
   </main>
 </template>
