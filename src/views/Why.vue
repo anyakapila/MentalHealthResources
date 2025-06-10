@@ -26,10 +26,10 @@
     </p>
 
     <div class = "image-grid">
-      <img src="@/assets/why1.png"/><br>
-      <img src="@/assets/why2.png"/><br>
-      <img src="@/assets/why3.png"/><br>
-      <img src="@/assets/why4.png"/><br>
+      <img src="@/assets/page_why/why1.png"/><br>
+      <img src="@/assets/page_why/why2.png"/><br>
+      <img src="@/assets/page_why/why3.png"/><br>
+      <img src="@/assets/page_why/why4.png"/><br>
     </div>
     
   </main>
