@@ -1,0 +1,44 @@
+{
+ "name": "articles",
+  "version": "0.0.1",
+  "articles": [
+    {
+      "id": "1",
+      "title": "Therapy",
+      "summary": "JSON (JavaScript Object Notation) is a lightweight data interchange format that is easy for humans to read and write, and easy for machines to parse and generate.",
+      "url": "https://example.com/understanding-json",
+      "phone": "+1-800-555-0199",
+      "email": "example@gmail.com",
+      "categories": [
+        1, 3
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Psychiatrist",
+      "summary": "Python is a versatile programming language known for its readability and broad applicability in web development, data analysis, artificial intelligence, and more.",
+      "phone": "+1-800-555-0199",
+      "email": "example@gmail.com",
+      "categories": [
+        2, 3
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "ADHD",
+      "description": "Attention Deficit Hyperactivity Disorder (ADHD) is a neurodevelopmental disorder characterized by inattention, hyperactivity, and impulsivity."
+    },
+    {
+      "id": "2",
+      "name": "OCD",
+        "description": "Obsessive-Compulsive Disorder (OCD) is a mental health condition marked by persistent, unwanted thoughts (obsessions) and repetitive behaviors (compulsions)."
+    },
+    {
+      "id": "3",
+      "name": "Mental Health",
+        "description": "Mental health encompasses emotional, psychological, and social well-being, affecting how we think, feel, and act. It also influences how we handle stress, relate to others, and make choices."
+    }
+  ]
+}
