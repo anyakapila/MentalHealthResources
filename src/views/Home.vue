@@ -18,10 +18,13 @@
     </ul>
     </nav>
 
-    <p>
-    </p>
+    <home_intro />
   </main>
 </template>
+
+<script setup>
+import home_intro from '@/assets/page_home/home_intro.vue'
+</script>
 
 <script>
 export default {

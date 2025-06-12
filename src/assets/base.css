@@ -128,7 +128,7 @@ h2 {
 }
 
 .navbar {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -137,8 +137,13 @@ h2 {
   background-color: var(--color-background);
   color: var(--color-heading);
   border-bottom: 1px solid var(--color-bigheading);
+  box-sizing: border-box;
+  /* Remove margin-bottom by default */
+}
+
+/* Add margin-bottom only when .navbar--with-margin is present */
+.navbar.navbar--with-margin { 
   margin-bottom: 1rem;
-  box-sizing: border-box
 }
 
 .nav-links {

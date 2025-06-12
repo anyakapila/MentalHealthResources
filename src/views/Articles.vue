@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <nav class = "navbar">
+    <nav class = "navbar navbar--with-margin">
     <ul class="nav-links">
       <router-link to="/">Home</router-link> |
       <router-link to="/why">Why?</router-link> |

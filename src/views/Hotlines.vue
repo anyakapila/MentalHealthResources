@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <nav class = "navbar">
+    <nav class = "navbar navbar--with-margin">
     <ul class="nav-links">
       <router-link to="/">Home</router-link> |
       <router-link to="/why">Why?</router-link> |
@@ -18,8 +18,8 @@
     </ul>
     </nav>
 
-    <p>
-      <ul>
+    <ul>
+      <p>
         <strong>National Crisis and Suicide Lifeline</strong>: 988<br>
         <strong>Crisis Text Line</strong>: Text "HOME" to 741741<br>
         <strong>National Domestic Violence Hotline</strong>: (800) 799-7233<br>
@@ -30,8 +30,8 @@
         <strong>CDC National HIV and AIDS Hotline</strong>: (800) 232-4636<br>
         <strong>Childhelp National Child Abuse Hotline</strong>: (800) 422-4453<br>
         <strong>Substance Abuse and Mental Health Services Administration National Helpline</strong>: (800) 662-4357
-      </ul>
-    </p>
+      </p>
+    </ul>
 
   </main>
 </template>
