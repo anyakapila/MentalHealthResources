@@ -1,0 +1,51 @@
+{
+"name": "articles",
+  "version": "0.0.1",
+  "articles": [
+    {
+      "id": "1",
+      "title": "Taking on the stigma of ADHD",
+      "source": "National Library of Medicine",
+      "url": "https://magazine.medlineplus.gov/article/taking-on-the-stigma-of-adhd/",
+      "categories": [
+        1
+      ]
+    },
+    {
+     "id": "2",
+      "title": "Pathway to effective treatment for common mental and substance use disorders in the World Mental Health Surveys: Perceived need for treatment",
+      "source": "International Journal of Mental Health Systems",
+      "url": "https://ijmhs.biomedcentral.com/articles/10.1186/s13033-025-00666-w",
+      "categories": [
+        4
+      ] 
+    },
+    {
+     "id": "3",
+      "title": "15 things to do if you're feeling lonely",
+      "source": "Mental Health Foundation",
+      "url": "https://www.mentalhealth.org.uk/publications/15-things-do-if-youre-feeling-lonely",
+      "categories": [
+        3
+      ]
+    }
+   ],
+"categories": [
+    {
+      "id": "1",
+      "name": "ADHD"
+    },
+    {
+      "id": "2",
+      "name": "OCD"
+    },
+    {
+      "id": "3",
+      "name": "Tips for Managing Your Mental Health"
+    },
+    {
+      "id": "4",
+      "name": "Studies and Research"
+    }
+  ]
+}

@@ -18,10 +18,52 @@
     </ul>
     </nav>
 
-    <p>
-      <a href="https://www.mentalhealth.org.uk/our-work/public-engagement/unlock-loneliness/15-things-do-if-youre-feeling-lonely" target="_blank" rel="noopener noreferrer"><strong>15 Things to Do if You're Feeling Lonely</strong> from the Mental Health Foundation UK</a><br>
-      <a href="https://ijmhs.biomedcentral.com/articles/10.1186/s13033-025-00666-w" target="_blank" rel="noopener noreferrer"><strong>Article on Perceived Need for Treatment</strong> from the International Journal of Mental Health Systems</a><br>
-      <a href="https://magazine.medlineplus.gov/article/taking-on-the-stigma-of-adhd/" target="_blank" rel="noopener noreferrer"><strong>Taking on the Stigma of ADHD</strong> from the National Library of Medicine</a><br>
-    </p>
+   <label>Filter by Category:</label>
+   <select v-model="selectedCategory">
+    <option value="">All</option>
+    <option v-for="cat in categoryNames" :key="cat" :value="cat">
+      {{cat}}
+    </option>
+   </select>
+
+   <ul>
+    <li v-for="article in filteredArticles" :key="article.title">
+      <strong>{{ article.title }}</strong><br />
+      <em>{{ article.source }}</em><br />
+      <a :href="article.url" target="_blank">{{ article.url }}</a><br />
+      <span>
+        Categories:
+        <span v-for="catId in article.categories" :key="catId">
+          {{ getCategoryName(catId) }}<span v-if="!isLast(catId, article.categories)">, </span>
+        </span>
+      </span>
+      <hr />
+    </li>
+    </ul>
   </main>
 </template>
+
+<script setup>
+import { useArticleFilter } from '@/assets/page_articles/articlesfilter.js'
+
+const {
+  selectedCategory,
+  categoryNames,
+  filteredArticles,
+  getCategoryName
+} = useArticleFilter()
+
+// comma formatting
+function isLast(id, list) {
+  return list.indexOf(id) === list.length - 1
+}
+</script>
+
+<style scoped>
+select {
+  margin: 1rem 0;
+}
+hr {
+  margin: 1rem 0;
+}
+</style>
