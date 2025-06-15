@@ -1,0 +1,136 @@
+{
+"name": "hotlines",
+  "version": "0.0.1",
+  "hotlines": [
+    {
+      "id": "1",
+      "title": "National Crisis and Suicide Lifeline",
+      "number": "988",
+      "categories": [
+        1
+      ]
+    },
+    {
+     "id": "2",
+      "title": "Crisis Text Line",
+      "number": "Text \"HOME\" to 741741",
+      "categories": [
+        1
+      ] 
+    },
+    {
+     "id": "3",
+      "title": "National Domestic Violence Hotline",
+      "number": "1-800-799-7233",
+      "categories": [
+        6
+      ]
+    },
+    {
+     "id": "4",
+     "title": "National Sexual Assault Hotline",
+     "number": "1-800-656-4673",
+     "categories": [
+        2
+     ]
+    },
+    {
+        "id": "5",
+        "title": "National Human Trafficking Hotline",
+        "number": "1-888-373-7888",
+        "categories": [
+          7
+        ]
+    },
+    {
+        "id": "6",
+        "title": "National Domestic Violence Hotline",
+        "number": "1-800-799-7233",
+        "categories": [
+          6
+        ]
+    },
+    {
+        "id": "7",
+        "title": "National Sexual Assault Hotline",
+        "number": "1-800-656-4673",
+        "categories": [
+          2
+        ]   
+    },
+    {
+        "id": "8",
+        "title": "National Grad Crisis Line",
+        "number": "1-877-472-3457",
+        "categories": [
+            3
+        ]
+    },
+    {
+        "id": "9",
+        "title": "Disaster Distress Helpline",
+        "number": "1-800-985-5990",
+        "categories": [
+            4
+        ]
+    },
+    {
+        "id": "10",
+        "title": "CDC National HIV and AIDS Hotline",
+        "number": "1-800-232-4636",
+        "categories": [
+            8
+        ]
+    },
+    {
+        "id": "11",
+        "title": "Childhelp National Child Abuse Hotline",
+        "number": "1-800-422-4453",
+        "categories": [
+            3
+        ]
+    },
+    {
+        "id": "12",
+        "title": "Substance Abuse and Mental Health Services Administration National Helpline",
+        "number": "1-800-662-4357",
+        "categories": [
+            5
+        ]
+    }
+   ],
+"categories": [
+    {
+      "id": "1",
+      "name": "General Crisis"
+    },
+    {
+      "id": "2",
+      "name": "Sexual Assault"
+    },
+    {
+      "id": "3",
+      "name": "Children or Students"
+    },
+    {
+      "id": "4",
+      "name": "Disaster"
+    },
+    {
+     "id": "5",
+     "name": "Substance Abuse"
+    },
+    {
+     "id": "6",
+     "name": "Domestic Violence"
+    },
+    {
+     "id": "7",
+     "name": "Human Trafficking"
+    },
+    {
+        "id": "8",
+        "name": "Diseases"
+    }
+  ]
+}

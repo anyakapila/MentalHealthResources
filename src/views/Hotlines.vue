@@ -18,20 +18,52 @@
     </ul>
     </nav>
 
-    <ul>
-      <p>
-        <strong>National Crisis and Suicide Lifeline</strong>: 988<br>
-        <strong>Crisis Text Line</strong>: Text "HOME" to 741741<br>
-        <strong>National Domestic Violence Hotline</strong>: (800) 799-7233<br>
-        <strong>National Sexual Assault Hotline</strong>: (800) 656-4673<br>
-        <strong>National Human Trafficking Hotline</strong>: (888) 373-7888<br>
-        <strong>National Grad Crisis Line</strong>: (877) 472-3457<br>
-        <strong>Disaster Distress Helpline</strong>: (800) 985-5990<br>
-        <strong>CDC National HIV and AIDS Hotline</strong>: (800) 232-4636<br>
-        <strong>Childhelp National Child Abuse Hotline</strong>: (800) 422-4453<br>
-        <strong>Substance Abuse and Mental Health Services Administration National Helpline</strong>: (800) 662-4357
-      </p>
+   <label>Filter by Category:</label>
+   <select v-model="selectedCategory">
+    <option value="">All</option>
+    <option v-for="cat in categoryNames" :key="cat" :value="cat">
+      {{cat}}
+    </option>
+   </select>
+
+   <ul>
+    <li v-for="hotline in filteredHotlines" :key="hotline.title">
+      <strong>{{ hotline.title }}</strong><br />
+      <em>{{ hotline.number }}</em><br />
+      <span>
+        Categories:
+        <span v-for="catId in hotline.categories" :key="catId">
+          {{ getCategoryName(catId) }}<span v-if="!isLast(catId, hotline.categories)">, </span>
+        </span>
+      </span>
+      <hr />
+    </li>
     </ul>
 
   </main>
 </template>
+
+<script setup>
+import { useHotlineFilter } from '@/assets/page_hotlines/hotlinesfilter.js'
+
+const {
+  selectedCategory,
+  categoryNames,
+  filteredHotlines,
+  getCategoryName
+} = useHotlineFilter()
+
+// comma formatting
+function isLast(id, list) {
+  return list.indexOf(id) === list.length - 1
+}
+</script>
+
+<style scoped>
+select {
+  margin: 1rem 0;
+}
+hr {
+  margin: 1rem 0;
+}
+</style>
