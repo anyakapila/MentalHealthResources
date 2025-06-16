@@ -18,25 +18,23 @@
     </ul>
     </nav>
 
-   <label>Filter by Category:</label>
-   <select v-model="selectedCategory">
+   <div class="filter-container">
+   <label for="category-select">Filter by Category:</label>
+   <select id="category-select" v-model="selectedCategory">
     <option value="">All</option>
     <option v-for="cat in categoryNames" :key="cat" :value="cat">
       {{cat}}
     </option>
    </select>
+  </div>
 
-   <ul>
-    <li v-for="hotline in filteredHotlines" :key="hotline.title">
+   <ul class="filtered-list">
+    <li 
+      class="card"
+      v-for="hotline in filteredHotlines" 
+      :key="hotline.title">
       <strong>{{ hotline.title }}</strong><br />
       <em>{{ hotline.number }}</em><br />
-      <span>
-        Categories:
-        <span v-for="catId in hotline.categories" :key="catId">
-          {{ getCategoryName(catId) }}<span v-if="!isLast(catId, hotline.categories)">, </span>
-        </span>
-      </span>
-      <hr />
     </li>
     </ul>
 

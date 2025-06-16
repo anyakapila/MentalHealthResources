@@ -199,6 +199,70 @@ strong {
   color: var(--color-heading);
 }
 
+li {
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  list-style: none;
+}
 
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
 
+label {
+  font-weight: 600;
+  color: var(--color-text);
+}
 
+select {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--color-text);
+  border-radius: 0.5rem;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+select:hover, select:focus {
+  border-color: var(--color-heading);
+  outline: none;
+}
+
+ul a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+ul a:visited {
+  color: var(--color-text);
+}
+
+.filtered-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-heading);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  color: var(--color-text);
+}
+
+.card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}

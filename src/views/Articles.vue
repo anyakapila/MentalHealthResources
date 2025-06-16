@@ -18,26 +18,24 @@
     </ul>
     </nav>
 
-   <label>Filter by Category:</label>
-   <select v-model="selectedCategory">
+  <div class="filter-container">
+   <label for="category-select">Filter by Category:</label>
+   <select id="category-select" v-model="selectedCategory">
     <option value="">All</option>
     <option v-for="cat in categoryNames" :key="cat" :value="cat">
       {{cat}}
     </option>
    </select>
+  </div>
 
-   <ul>
-    <li v-for="article in filteredArticles" :key="article.title">
-      <strong>{{ article.title }}</strong><br />
+   <ul class="filtered-list">
+    <li
+      class="card"
+      v-for="article in filteredArticles" 
+      :key="article.title">
+      <a :href="article.url" target="_blank">
+      <strong>{{ article.title }}</strong></a><br />
       <em>{{ article.source }}</em><br />
-      <a :href="article.url" target="_blank">{{ article.url }}</a><br />
-      <span>
-        Categories:
-        <span v-for="catId in article.categories" :key="catId">
-          {{ getCategoryName(catId) }}<span v-if="!isLast(catId, article.categories)">, </span>
-        </span>
-      </span>
-      <hr />
     </li>
     </ul>
   </main>
@@ -65,5 +63,9 @@ select {
 }
 hr {
   margin: 1rem 0;
+}
+a:hover strong {
+  color: var(--color-bigheading);
+  transition: color 0.2s ease;
 }
 </style>
