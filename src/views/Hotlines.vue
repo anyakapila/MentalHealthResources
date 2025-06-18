@@ -28,15 +28,23 @@
    </select>
   </div>
 
-   <ul class="filtered-list">
+   <div class="filtered-list">
     <li 
       class="card"
       v-for="hotline in filteredHotlines" 
-      :key="hotline.title">
-      <strong>{{ hotline.title }}</strong><br />
+      :key="hotline.id">
+      
+      <div v-if="hotline.url">
+        <a :href="hotline.url" target="_blank">
+        <strong>{{ hotline.title }}</strong></a><br />
+      </div>
+      <div v-else>
+        <strong>{{ hotline.title }}</strong><br />
+      </div>
+
       <em>{{ hotline.number }}</em><br />
     </li>
-    </ul>
+    </div>
 
   </main>
 </template>
@@ -63,5 +71,9 @@ select {
 }
 hr {
   margin: 1rem 0;
+}
+a:hover strong {
+  color: var(--color-bigheading);
+  transition: color 0.2s ease;
 }
 </style>

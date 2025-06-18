@@ -28,7 +28,7 @@
    </select>
   </div>
 
-   <ul class="filtered-list">
+   <div class="filtered-list">
     <li
       class="card"
       v-for="article in filteredArticles" 
@@ -37,7 +37,7 @@
       <strong>{{ article.title }}</strong></a><br />
       <em>{{ article.source }}</em><br />
     </li>
-    </ul>
+    </div>
   </main>
 </template>
 

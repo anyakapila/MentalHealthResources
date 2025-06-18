@@ -234,13 +234,13 @@ select:hover, select:focus {
   outline: none;
 }
 
-ul a {
+div a {
   color: var(--color-text);
   text-decoration: none;
   transition: color 0.3s;
 }
 
-ul a:visited {
+div a:visited {
   color: var(--color-text);
 }
 
