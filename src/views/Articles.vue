@@ -18,15 +18,30 @@
     </ul>
     </nav>
 
-  <div class="filter-container">
-   <label for="category-select">Filter by Category:</label>
-   <select id="category-select" v-model="selectedCategory">
-    <option value="">All</option>
-    <option v-for="cat in categoryNames" :key="cat" :value="cat">
-      {{cat}}
-    </option>
-   </select>
+<div class= "filter-container">
+  <div class="filter-box">
+    <h3 class="filter-title">Filter by Categories</h3>
+
+    <div class="category-tags">
+    <label
+      v-for="cat in categoryNames"
+      :key="cat"
+      class="tag-checkbox"
+    >
+      <input
+        type="checkbox"
+        :value="cat"
+        v-model="selectedCategories"
+      />
+      <span>{{ cat }}</span>
+    </label>
+    </div>
+
+    <button class="clear-button" @click="selectedCategories= []">
+      Clear Filter
+    </button>
   </div>
+</div>
 
    <div class="filtered-list">
     <li
@@ -45,7 +60,7 @@
 import { useArticleFilter } from '@/assets/page_articles/articlesfilter.js'
 
 const {
-  selectedCategory,
+  selectedCategories,
   categoryNames,
   filteredArticles,
   getCategoryName
@@ -58,14 +73,73 @@ function isLast(id, list) {
 </script>
 
 <style scoped>
-select {
-  margin: 1rem 0;
+.filter-box {
+  background-color: var(--color-heading);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin: 0.5rem 0;
+  max-width: 600px;
 }
+
+.filter-title {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-background);
+}
+
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.tag-checkbox {
+  background-color: var(--color-background);
+  border-radius: 2rem;
+  padding: 0.4rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.tag-checkbox:hover {
+  background-color: var(--color-bigheading);
+  color: var(--color-background)
+}
+
+.tag-checkbox input {
+  accent-color: var(--color-bigheading);
+}
+
 hr {
   margin: 1rem 0;
 }
+
 a:hover strong {
   color: var(--color-bigheading);
   transition: color 0.2s ease;
+}
+
+.clear-button {
+  background-color: var(--color-text);
+  color: var(color-background);
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.clear-button:hover {
+  background-color: var(--color-bigheading);
 }
 </style>

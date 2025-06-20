@@ -4,7 +4,7 @@ import hotlineData from './hotlines.json'
 export function useHotlineFilter() {
     const hotlines = ref([])
     const categories = ref([])
-    const selectedCategory = ref('')
+    const selectedCategories = ref([])
 
     onMounted(() => {
         hotlines.value = hotlineData.hotlines
@@ -24,18 +24,18 @@ export function useHotlineFilter() {
 
     // filter hotlines by selected category
     const filteredHotlines = computed(() => {
-        if (!selectedCategory.value) return hotlines.value
+        if (selectedCategories.value.length === 0) return hotlines.value
 
         return hotlines.value.filter(hotline =>
             hotline.categories.some(catId => {
                 const name = getCategoryName(catId)
-                return name === selectedCategory.value
+                return selectedCategories.value.includes(name)
             })
         )
     })  
 
     return {
-        selectedCategory,
+        selectedCategories,
         categoryNames,
         filteredHotlines,
         getCategoryName

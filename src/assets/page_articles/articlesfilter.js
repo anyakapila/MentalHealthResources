@@ -4,7 +4,7 @@ import articleData from './articles.json'
 export function useArticleFilter() {
     const articles = ref([])
     const categories = ref([])
-    const selectedCategory = ref('')
+    const selectedCategories = ref([])
 
     onMounted(() => {
         articles.value = articleData.articles
@@ -24,18 +24,18 @@ export function useArticleFilter() {
 
     // filter articles by selected category
     const filteredArticles = computed(() => {
-        if (!selectedCategory.value) return articles.value
+        if (selectedCategories.value.length === 0) return articles.value
 
         return articles.value.filter(article =>
             article.categories.some(catId => {
                 const name = getCategoryName(catId)
-                return name === selectedCategory.value
+                return selectedCategories.value.includes(name)
             })
         )
     })  
 
     return {
-        selectedCategory,
+        selectedCategories,
         categoryNames,
         filteredArticles,
         getCategoryName
