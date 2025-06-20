@@ -17,7 +17,8 @@
       <router-link to="/articles">Articles</router-link>
     </ul>
     </nav>
-
+    
+    <!-- comment
     <p> 
     <providers> 
     <strong>What are you looking for?</strong><br>
@@ -37,6 +38,33 @@
     <li>Gender</li>
     </filters>
     </p>
+    -->
+
+    <button @click="fetchLocation">Get My Location</button>
+    <p v-if="latitude && longitude">
+      Latitude: {{ latitude }}<br />
+      Longitude: {{ longitude }}
+    </p>
 
   </main>
 </template>
+
+<script setup>
+import {ref} from 'vue'
+import { getCurrentLocation } from '@/assets/page_support/location.js'
+
+const latitude = ref(null)
+const longitude = ref(null)
+
+function fetchLocation() {
+  getCurrentLocation(
+    (position) => {
+      latitude.value = position.coords.latitude
+      longitude.value = position.coords.longitude
+    },
+    (error) => {
+      console.error("Geolocation error:", error.message)
+    }
+  )
+}
+</script>
