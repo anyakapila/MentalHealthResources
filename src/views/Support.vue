@@ -20,9 +20,9 @@
    
    <div>
     <div v-if="data">
-      <div v-for="places in data" :key="places.id"> 
+      <div v-for="item in data.places"> 
         <!-- Assuming each object has a unique 'id' for the key -->
-        <p>{{ places }}</p>
+        <p>{{ item.formattedAddress }}</p>
         <!-- Display other properties as needed -->
       </div>
     </div>
@@ -70,6 +70,7 @@ export default {
       }
       const jsonData = await response.json();
       this.data = jsonData;
+      console.log(this.data);
     } catch (error) {
       this.error = 'Error fetching data: ' + error.message;
     } finally {
