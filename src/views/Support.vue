@@ -19,15 +19,20 @@
     </nav>
    
    <div>
-    <div v-if="data">
+    <div v-if="data && data.places && data.places.length">
       <div v-for="item in data.places"> 
-        <!-- Assuming each object has a unique 'id' for the key -->
         <p>{{ item.formattedAddress }}</p>
         <!-- Display other properties as needed -->
       </div>
     </div>
-    <div v-else>
+    <div v-else-if="loading">
       <p>Loading data...</p>
+    </div>
+    <div v-else-if="error">
+      <p>{{ error }}</p>
+    </div>
+    <div v-else>
+      <p>No results found.</p>
     </div>
   </div>
 
@@ -35,7 +40,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { getCurrentLocation } from '@/assets/page_support/location.js'
 
 export default {
   data() {
@@ -45,37 +50,60 @@ export default {
       error: null,
     };
   },
-  async created() {
+  created() {
     this.loading = true;
-    try {
-      const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', 
-          'X-Goog-Api-Key': 'AIzaSyCgqfNRutkyQfLKxOsZL_HBAsBxnHjzZ14',
-          'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.location'
-          },
-        body: JSON.stringify({
-          textQuery: 'mental health', 
-          locationBias: {
-            circle: {
-              center: { latitude: 37.7749, longitude: -122.4194 },
-              radius: 500.0
+
+    getCurrentLocation(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        console.log("User Location:", lat, lng);
+
+        (async () => {
+          try {
+            const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-Goog-Api-Key': 'AIzaSyCgqfNRutkyQfLKxOsZL_HBAsBxnHjzZ14',
+                'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.location',
+              },
+              body: JSON.stringify({
+                textQuery: 'mental health',
+                locationBias: {
+                  circle: {
+                    center: { latitude: lat, longitude: lng },
+                    radius: 500.0,
+                  },
+                },
+              }),
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
             }
+
+            const jsonData = await response.json();
+            this.data = jsonData;
+            console.log("Places API Data:", JSON.stringify(jsonData, null, 2));
+
+            if (!jsonData.places || !jsonData.places.length) {
+              console.warn("No places found in response", jsonData);
+            }
+          } catch (error) {
+            console.error("Fetch error:", error);
+            this.error = 'Error fetching data: ' + error.message;
+          } finally {
+            this.loading = false;
           }
-        })
-      }); // API endpoint
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        })();
+      },
+      (error) => {
+        this.error = 'Geolocation error: ' + error.message;
+        this.loading = false;
+        console.error('Geolocation error', error);
       }
-      const jsonData = await response.json();
-      this.data = jsonData;
-      console.log(this.data);
-    } catch (error) {
-      this.error = 'Error fetching data: ' + error.message;
-    } finally {
-      this.loading = false;
-    }
+    );
   },
 };
 
