@@ -20,20 +20,42 @@
    
    <div>
     <div v-if="data && data.places && data.places.length">
-      <div v-for="item in data.places"> 
-        <p>{{ item.formattedAddress }}</p>
-        <!-- Display other properties as needed -->
+      <div v-for="item in data.places" class="card">
+        <strong>{{ item.displayName.text }}</strong><br />
+        <strong>Address: </strong>{{ item.formattedAddress }}
+
+        <!-- if there is a phone number -->
+        <div v-if="item.nationalPhoneNumber">
+        <strong>Phone: </strong>{{ item.nationalPhoneNumber }}<br />
+        </div>
+
+        <!-- if there is a website url -->
+        <a v-if="item.websiteUri" :href="item.websiteUri" target="_blank" rel="noopener noreferrer"><strong>Website Link</strong><br /></a>
+
+      <div v-if="item.regularOpeningHours?.weekdayDescriptions">
+      <ul>
+        <strong>Hours:</strong>
+        <li v-for="(day, index) in item.regularOpeningHours.weekdayDescriptions" :key="index">
+          {{ day }}
+        </li>
+      </ul>
+      </div>
+
       </div>
     </div>
+
     <div v-else-if="loading">
       <p>Loading data...</p>
     </div>
+
     <div v-else-if="error">
       <p>{{ error }}</p>
     </div>
+
     <div v-else>
       <p>No results found.</p>
     </div>
+    
   </div>
 
   </main>
@@ -66,7 +88,7 @@ export default {
               headers: {
                 'Content-Type': 'application/json',
                 'X-Goog-Api-Key': 'AIzaSyCgqfNRutkyQfLKxOsZL_HBAsBxnHjzZ14',
-                'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.location',
+                'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.regularOpeningHours.weekdayDescriptions,places.nationalPhoneNumber,places.websiteUri',
               },
               body: JSON.stringify({
                 textQuery: 'mental health',
@@ -108,3 +130,12 @@ export default {
 };
 
 </script>
+
+<style scoped>
+
+a:hover strong {
+  color: var(--color-bigheading);
+  transition: color 0.2s ease;
+}
+
+</style>
