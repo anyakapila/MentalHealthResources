@@ -19,7 +19,7 @@
     </nav>
 
    <div class= "filter-container">
-  <div class="filter-box">
+    <div class="filter-box">
     <h3 class="filter-title">Filter by Categories</h3>
 
     <div class="category-tags">
@@ -130,6 +130,7 @@ function isLast(id, list) {
 hr {
   margin: 1rem 0;
 }
+
 a:hover strong {
   color: var(--color-bigheading);
   transition: color 0.2s ease;
