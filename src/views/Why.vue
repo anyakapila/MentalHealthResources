@@ -1,22 +1,7 @@
 <template>
   <main>
-    <div class="header">
-      <img src="@/assets/newlogo.png" alt="Logo" class="logo" />
-      <div class="header-text">
-        <h1>Why?</h1>
-        <h2>The reason behind it all.</h2>
-      </div>
-    </div>
-
-    <nav class="navbar navbar--with-margin">
-      <ul class="nav-links">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/why">Why?</router-link> |
-        <router-link to="/support">Support</router-link> |
-        <router-link to="/hotlines">Hotlines</router-link> |
-        <router-link to="/articles">Articles</router-link>
-      </ul>
-    </nav>
+  <Header title="Why?" subtitle="The reason behind it all." />
+  <Nav />
 
     <li class="card">
       As a high school student who has struggled with mental health issues, I decided to conduct a survey in my community to assess the accessibility of mental health-related resources to those who need them.
@@ -44,3 +29,8 @@
     
   </main>
 </template>
+
+<script setup>
+import Header from '@/components/Header.vue'
+import Nav from '@/components/Nav.vue'
+</script>

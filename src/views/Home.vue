@@ -1,28 +1,14 @@
 <template>
   <main>
-    <div class="header">
-      <img src="@/assets/newlogo.png" alt="Logo" class="logo"/>
-      <div class="header-text">
-        <h1>SupportShelf</h1>
-        <h2>Your all-in-one mental health resource.</h2>
-      </div>
-    </div>
-    
-    <nav class = "navbar">
-    <ul class="nav-links">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/why">Why?</router-link> |
-      <router-link to="/support">Support</router-link> |
-      <router-link to="/hotlines">Hotlines</router-link> |
-      <router-link to="/articles">Articles</router-link>
-    </ul>
-    </nav>
-
+  <Header title="SupportShelf" subtitle="Your all-in-one mental health resource." />
+  <Nav />
     <home_intro />
   </main>
 </template>
 
 <script setup>
+import Header from '@/components/Header.vue'
+import Nav from '@/components/Nav.vue'
 import home_intro from '@/assets/page_home/home_intro.vue'
 </script>
 
