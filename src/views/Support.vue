@@ -59,7 +59,7 @@
 
         <!-- showing hours -->
         <button @click="toggleHours(index)" class="toggle-hours-btn">
-          {{ expandedCards.has(index) ? 'Hide hours' : 'Show hours' }}
+          {{ expandedCards.has(index) ? 'Hide Hours' : 'Show Hours' }}
         </button>
         <div v-if="expandedCards.has(index) && item.regularOpeningHours?.weekdayDescriptions">
           <ul>
@@ -84,7 +84,10 @@
     </div>
   </div>
   <!-- map container -->
-  <div class="map-panel" id="map"></div>
+  <div class="map-panel card">
+    <div id="map" class="map-inner"></div>
+  </div>
+
   </div>
 
   </main>
@@ -325,13 +328,13 @@ export default {
     border-radius: 999px;
     cursor: pointer;
     transition: background 0.3s ease;
-    background-color: #fff1be;
-    color: #0A1C30;
+    background-color: var(--color-text);
+    color: var(--color-background);
     margin: 1rem;
 }
 
 .toggle-hours-btn:hover {
-    background-color: #ddefff;
+    background-color: var(--color-bigheading);
 }
 
 .flex-container {
@@ -357,4 +360,9 @@ export default {
   height: 500px;
 }
 
+.map-inner {
+  width: 100%;
+  height: 100%; 
+  border-radius: 5px;
+}
 </style>
