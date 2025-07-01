@@ -29,17 +29,20 @@
   
   <!--  card list -->
 
-  <div style="display: flex; gap: 1rem;">
-   <div style="width: 60%; overflow-y: auto; max-height: 500px;" ref="listContainer">
+  <div class="flex-container">
+  <!-- list container -->
 
-    <!-- looping through each place -->
+   <div class="list-panel" ref="listContainer">
+
+    <!-- looping through each place for place cards -->
     <div v-if="data && data.places && data.places.length">
 
       <div v-for="(item, index) in data.places" 
       :key="index" 
       class="card" 
       :ref="'placeCard-' + index"
-      :class="{ highlighted: selectedPlaceId === index }">
+      :class="{ highlighted: selectedPlaceId === index }"
+      @click="handleCardClick(index)">
         
         <!-- displaying info -->
         <strong>{{ item.displayName.text }}</strong><br />
@@ -80,7 +83,8 @@
       <p>No results found.</p>
     </div>
   </div>
-  <div id="map" style="width: 100%; height: 400px; margin-top: 1rem;"></div>
+  <!-- map container -->
+  <div class="map-panel" id="map"></div>
   </div>
 
   </main>
@@ -178,6 +182,29 @@ export default {
         this.selectedFilters.splice(index, 1); // deselect
       } else {
         this.selectedFilters.push(filter); // select
+      }
+    },
+
+    handleCardClick(index) {
+      this.selectedPlaceId = index;
+
+      const place = this.data.places[index];
+      if (!place || !place.location || !this.map) return;
+
+      const latLng = {
+        lat: place.location.latitude,
+        lng: place.location.longitude
+      };
+
+      // Center the map on the clicked list item
+      this.map.panTo(latLng);
+      this.map.setZoom(16); // zoom in
+
+      // marker bounces 
+      const marker = this.markers[index];
+      if (marker) {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(() => marker.setAnimation(null), 700); // short bounce
       }
     },
 
@@ -290,4 +317,44 @@ export default {
   overflow-y: auto;
   width: 60%;
 }
+
+.toggle-hours-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    background-color: #fff1be;
+    color: #0A1C30;
+    margin: 1rem;
+}
+
+.toggle-hours-btn:hover {
+    background-color: #ddefff;
+}
+
+.flex-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.list-panel {
+  width: 30%;
+  height: 500px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.list-panel::-webkit-scrollbar {
+  display: none;
+}
+
+.map-panel {
+  width: 70%;
+  height: 500px;
+}
+
 </style>
