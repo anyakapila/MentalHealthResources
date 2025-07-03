@@ -3,48 +3,29 @@
   <Header title="Support" subtitle="Find the support provider for you." />
   <Nav />
 
-  <!-- filter box -->
-  <div class= "filter-container">
-    <div class="filter-box">
-    <h3 class="filter-title">Filter by Need</h3>
-    <div class="category-tags">
-    <label class="tag-checkbox">
-      <input type="checkbox" value="therapist" v-model="selectedFilters" />
-        Therapist
-    </label>
-    <label class="tag-checkbox">
-      <input type="checkbox" value="psychologist" v-model="selectedFilters" />
-        Psychologist
-    </label>
-    <label class="tag-checkbox">
-      <input type="checkbox" value="counselor" v-model="selectedFilters" />
-        Counselor
-    </label>
-    </div>
-    
-    <button class="clear-button" @click="clearFilters">Clear Filters</button>
-  </div>
+  <div class="filter-container">
 
-  <!-- radius filter --> 
-    <div class="filter-box">
-      <h3 class="filter-title">Choose Search Radius</h3>
+    <!-- category filter -->
+    <CategoryFilter
+      title="Filter by Need"
+      :options="[
+        { label: 'Therapist', value: 'therapist' },
+        { label: 'Psychologist', value: 'psychologist' },
+        { label: 'Counselor', value: 'counselor' }
+      ]"
+      :modelValue="selectedFilters"
+      @update:modelValue="selectedFilters = $event"
+      @clear="clearFilters"
+    />
 
-      <label for="searchRadius">Choose a Distance: </label>
-      <select id="searchRadius" v-model="selectedDistance">
-        <option
-          v-for="distance in convertedDistances"
-          :key="distance.value"
-          :value="distance.value"
-        >
-          {{ distance.label }}
-        </option>
-      </select>
+    <!-- radius filter -->
+    <RadiusFilter 
+      v-model="selectedDistance"
+      :distances="convertedDistances"
+      :unit="unit"
+      @toggleUnit="toggleUnit"
+    />
 
-       <!-- toggle unit button -->
-    <br /><button class="distance" @click="toggleUnit">
-      In {{ unit === 'meters' ? 'Feet' : 'Meters' }}
-    </button>
-    </div>
   </div>
   
   <!--  card list -->
@@ -77,11 +58,13 @@
         <!-- if there is a website url -->
         <a v-if="item.websiteUri" :href="item.websiteUri" target="_blank" rel="noopener noreferrer"><strong>Website Link</strong><br /></a>
 
-        <!-- showing hours -->
+        <!-- showing hours if there is hours -->
+      
+      <div v-if="item.regularOpeningHours?.weekdayDescriptions">
         <button @click="toggleHours(index)" class="toggle-hours-btn">
           {{ expandedCards.has(index) ? 'Hide Hours' : 'Show Hours' }}
         </button>
-        <div v-if="expandedCards.has(index) && item.regularOpeningHours?.weekdayDescriptions">
+        <div v-if="expandedCards.has(index)">
           <ul>
             <strong>Hours:</strong>
             <li v-for="(day, dIndex) in item.regularOpeningHours.weekdayDescriptions" :key="dIndex">
@@ -89,6 +72,7 @@
             </li>
           </ul>
         </div>
+      </div>
         <!-- end of loop -->
       </div>
       </div>
@@ -115,6 +99,8 @@
 <script setup>
 import Header from '@/components/Header.vue'
 import Nav from '@/components/Nav.vue'
+import CategoryFilter from '@/assets/page_support/CategoryFilter.vue'
+import RadiusFilter from '@/assets/page_support/RadiusFilter.vue'
 </script>
 
 <script>
@@ -204,7 +190,6 @@ export default {
       this.unit = this.unit === 'meters' ? 'feet' : 'meters';
 
       // wait for dropdown to update before triggering anything else
-      await nextTick();
     },
 
     getDistanceInMeters() {
@@ -217,6 +202,7 @@ export default {
     },
 
     clearFilters() {
+      console.log('Clear Filters received');
       this.selectedFilters = [];
       this.searchPlaces();
       },
@@ -229,15 +215,6 @@ export default {
     }
     // Force reactivity 
     this.expandedCards = new Set(this.expandedCards);
-    },
-
-    toggleFilter(filter) {
-      const index = this.selectedFilters.indexOf(filter);
-      if (index > -1) {
-        this.selectedFilters.splice(index, 1); // deselect
-      } else {
-        this.selectedFilters.push(filter); // select
-      }
     },
 
     handleCardClick(index) {
@@ -366,9 +343,6 @@ export default {
       this.searchPlaces();
     },
     deep: false,
-    },
-    unit() {
-    this.searchPlaces(); 
     }
 }
 };
@@ -404,7 +378,6 @@ export default {
   gap: 1rem;
   margin-top: 1rem;
 }
-
 
 .list-panel {
   width: 30%;

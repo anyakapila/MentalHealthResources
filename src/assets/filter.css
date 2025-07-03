@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
-  align-items: center;
+  align-items: center stretch;
   flex-wrap: wrap;
   gap: 1rem;
   font-size: 1rem;
@@ -109,16 +109,6 @@ a:hover strong {
   color: var(--color-background);
 }
 
-.distance-select {
-  padding: 0.9rem 0.75rem;
-  border: 1px solid var(--color-text);
-  border-radius: 0.5rem;
-  background-color: var(--color-background);
-  color: var(--color-text);
-  font-size: 1rem;
-  transition: border 0.2s ease;
-}
-
 .distance {
   align-items: center;
   background-color: var(--color-text);
@@ -130,10 +120,18 @@ a:hover strong {
   font-size: 0.9rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  margin: 0.5rem;
+  margin: 1rem;
+  margin-top: 1.5rem;
 }
 
 .distance:hover {
   background-color: var(--color-bigheading);
+  color: var(--color-background);
+}
+
+.distance-label {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--color-background);
 }

@@ -104,10 +104,11 @@ select {
   color: var(--color-text);
   font-size: 1rem;
   transition: border 0.2s ease;
+  margin-left: 0.5rem;
 }
 
 select:hover, select:focus {
-  border-color: var(--color-heading);
+  border-color: var(--color-bigheading);
   outline: none;
 }
 
