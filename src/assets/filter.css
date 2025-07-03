@@ -9,8 +9,10 @@
 .filter-container {
   display: flex;
   justify-content: center;
+  flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
   font-size: 1rem;
 }
 
@@ -103,6 +105,35 @@ a:hover strong {
 }
 
 .search-button:hover {
+  background-color: var(--color-bigheading);
+  color: var(--color-background);
+}
+
+.distance-select {
+  padding: 0.9rem 0.75rem;
+  border: 1px solid var(--color-text);
+  border-radius: 0.5rem;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+.distance {
+  align-items: center;
+  background-color: var(--color-text);
+  color: var(--color-background);
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin: 0.5rem;
+}
+
+.distance:hover {
   background-color: var(--color-bigheading);
   color: var(--color-background);
 }

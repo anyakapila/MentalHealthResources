@@ -23,8 +23,28 @@
     </div>
     
     <button class="clear-button" @click="clearFilters">Clear Filters</button>
-  
   </div>
+
+  <!-- radius filter --> 
+    <div class="filter-box">
+      <h3 class="filter-title">Choose Search Radius</h3>
+
+      <label for="searchRadius">Choose a Distance: </label>
+      <select id="searchRadius" v-model="selectedDistance">
+        <option
+          v-for="distance in convertedDistances"
+          :key="distance.value"
+          :value="distance.value"
+        >
+          {{ distance.label }}
+        </option>
+      </select>
+
+       <!-- toggle unit button -->
+    <br /><button class="distance" @click="toggleUnit">
+      In {{ unit === 'meters' ? 'Feet' : 'Meters' }}
+    </button>
+    </div>
   </div>
   
   <!--  card list -->
@@ -87,7 +107,6 @@
   <div class="map-panel card">
     <div id="map" class="map-inner"></div>
   </div>
-
   </div>
 
   </main>
@@ -100,6 +119,7 @@ import Nav from '@/components/Nav.vue'
 
 <script>
 import { getCurrentLocation } from '@/assets/page_support/location.js'
+import { nextTick } from 'vue';
 
 export default {
   data() {
@@ -114,7 +134,28 @@ export default {
       markers: [],
       expandedCards: new Set(),
       selectedPlaceId: null,
+      unit: 'meters', // default unit is meters
+      selectedDistance: 500, // stored in meters
+      baseDistances: [500, 1000], // distances always in meters
     };
+  },
+  computed: {
+    convertedDistances() {
+      return this.baseDistances.map((meters) => {
+        if (this.unit === 'meters') {
+          return {
+            value: meters,
+            label: `${meters} meters`,
+          };
+        } else {
+          const feet = Math.round(meters / 0.3048);
+          return {
+            value: meters, // still use meters for api call
+            label: `${feet} feet`,
+          };
+        }
+      });
+    },
   },
 
   created() {
@@ -159,6 +200,17 @@ export default {
       });
     }, 
 
+    async toggleUnit() {
+      this.unit = this.unit === 'meters' ? 'feet' : 'meters';
+
+      // wait for dropdown to update before triggering anything else
+      await nextTick();
+    },
+
+    getDistanceInMeters() {
+      return this.selectedDistance; // always stored in meters
+    },
+
     clearMarkers() {
       this.markers.forEach((marker) => marker.setMap(null));
       this.markers = [];
@@ -175,7 +227,7 @@ export default {
     } else {
       this.expandedCards.add(index);
     }
-    // Force reactivity since Set isn't reactive by default
+    // Force reactivity 
     this.expandedCards = new Set(this.expandedCards);
     },
 
@@ -223,6 +275,9 @@ export default {
         ? this.selectedFilters.join(' ')
         : 'mental health'; // fallback
 
+      const radius = this.getDistanceInMeters();
+      console.log(`API call with radius: ${radius} meters`);
+
       try {
         const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
           method: 'POST',
@@ -236,7 +291,7 @@ export default {
               locationBias: {
                 circle: {
                   center: { latitude: this.lat, longitude: this.lng },
-                  radius: 500.0,
+                  radius: radius,
                 },
               },
             }),
@@ -302,19 +357,26 @@ export default {
       },
     },
 
-    watch: {
-  selectedFilters: {
-    handler() {
+  watch: {
+    selectedDistance() {
+      this.searchPlaces();
+    },
+    selectedFilters: {
+      handler() {
       this.searchPlaces();
     },
     deep: false,
-  }
+    },
+    unit() {
+    this.searchPlaces(); 
+    }
 }
 };
 
 </script>
 
 <style scoped>
+
 .list-container {
   max-height: 500px;
   overflow-y: auto;
@@ -342,6 +404,7 @@ export default {
   gap: 1rem;
   margin-top: 1rem;
 }
+
 
 .list-panel {
   width: 30%;
