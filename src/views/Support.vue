@@ -28,69 +28,25 @@
 
   </div>
   
-  <!--  card list -->
+  <!--  card list + map -->
 
   <div class="flex-container">
-  <!-- list container -->
+  <!-- list -->
 
-   <div class="list-panel" ref="listContainer">
+  <PlaceList
+   ref="placeList"
+   :places="data?.places"
+   :loading="loading"
+   :error="error"
+   :expandedCards="expandedCards"
+   :selectedPlaceId="selectedPlaceId"
+   @card-click="handleCardClick"
+   @toggle-hours="toggleHours"
+  />
 
-    <!-- looping through each place for place cards -->
-    <div v-if="data && data.places && data.places.length">
+  <!-- map -->
+  <Map ref="mapRef" />  
 
-      <div v-for="(item, index) in data.places" 
-      :key="index" 
-      class="card" 
-      :ref="'placeCard-' + index"
-      :class="{ highlighted: selectedPlaceId === index }"
-      @click="handleCardClick(index)">
-        
-        <!-- displaying info -->
-        <strong>{{ item.displayName.text }}</strong><br />
-
-        <strong>Address: </strong>{{ item.formattedAddress }}
-
-        <!-- if there is a phone number -->
-        <div v-if="item.nationalPhoneNumber">
-        <strong>Phone: </strong>{{ item.nationalPhoneNumber }}<br />
-        </div>
-
-        <!-- if there is a website url -->
-        <a v-if="item.websiteUri" :href="item.websiteUri" target="_blank" rel="noopener noreferrer"><strong>Website Link</strong><br /></a>
-
-        <!-- showing hours if there is hours -->
-      
-      <div v-if="item.regularOpeningHours?.weekdayDescriptions">
-        <button @click="toggleHours(index)" class="toggle-hours-btn">
-          {{ expandedCards.has(index) ? 'Hide Hours' : 'Show Hours' }}
-        </button>
-        <div v-if="expandedCards.has(index)">
-          <ul>
-            <strong>Hours:</strong>
-            <li v-for="(day, dIndex) in item.regularOpeningHours.weekdayDescriptions" :key="dIndex">
-              {{ day }}
-            </li>
-          </ul>
-        </div>
-      </div>
-        <!-- end of loop -->
-      </div>
-      </div>
-    <!-- handling other cases -->   
-    <div v-else-if="loading">
-      <p>Loading data...</p>
-    </div>
-    <div v-else-if="error">
-      <p>{{ error }}</p>
-    </div>
-    <div v-else>
-      <p>No results found.</p>
-    </div>
-  </div>
-  <!-- map container -->
-  <div class="map-panel card">
-    <div id="map" class="map-inner"></div>
-  </div>
   </div>
 
   </main>
@@ -101,13 +57,17 @@ import Header from '@/components/Header.vue'
 import Nav from '@/components/Nav.vue'
 import CategoryFilter from '@/assets/page_support/CategoryFilter.vue'
 import RadiusFilter from '@/assets/page_support/RadiusFilter.vue'
+import PlaceList from '@/assets/page_support/PlaceList.vue'
+import PlaceCard from '@/assets/page_support/PlaceCard.vue'
 </script>
 
 <script>
 import { getCurrentLocation } from '@/assets/page_support/location.js'
 import { nextTick } from 'vue';
+import Map from '@/assets/page_support/Map.vue';
 
 export default {
+  components: { Map },
   data() {
     return {
       data: null,
@@ -123,6 +83,7 @@ export default {
       unit: 'meters', // default unit is meters
       selectedDistance: 500, // stored in meters
       baseDistances: [500, 1000], // distances always in meters
+      mapRef: null,
     };
   },
   computed: {
@@ -153,8 +114,10 @@ export default {
         this.lng = position.coords.longitude;
         console.log("User Location:", this.lat, this.lng);
 
-        this.initMap(); // initialize map
-        this.searchPlaces() // run initial search in case
+        this.$nextTick(() => {
+          this.initMap(); // initializing map
+          this.searchPlaces() // run initial search in case
+        });
       },
       (error) => {
         this.error = 'Geolocation error: ' + error.message;
@@ -167,7 +130,13 @@ export default {
     methods: {
 
     initMap() {
-      this.map = new google.maps.Map(document.getElementById('map'), {
+      const mapDiv = this.$refs.mapRef?.mapEl
+      if (!mapDiv) {
+        console.warn('Map element not ready yet');
+        return;
+      }
+
+      this.map = new google.maps.Map(mapDiv, {
         center: { lat: this.lat, lng: this.lng },
         zoom: 14,
       });
@@ -299,20 +268,11 @@ export default {
 
               marker.addListener('click', () => {
                this.selectedPlaceId = index;
-
                this.$nextTick(() => {
-                const listContainer = this.$refs.listContainer;
-                const cardEl = this.$refs['placeCard-' + index];
-
-                if (listContainer && cardEl && cardEl[0]) {
-                  const containerTop = listContainer.getBoundingClientRect().top;
-                  const cardTop = cardEl[0].getBoundingClientRect().top;
-
-                  // Calculate offset of card relative to container's scrollTop
-                  const scrollOffset = cardTop - containerTop + listContainer.scrollTop;
-
-                  // Scroll the container smoothly to that offset
-                  listContainer.scrollTo({ top: scrollOffset, behavior: 'smooth' });
+                if (this.$refs.placeList && this.$refs.placeList.scrollToCard) {
+                  this.$refs.placeList.scrollToCard(index);
+                } else {
+                  console.warn('PlaceList ref or scrollToCard method missing');
                 }
               });
             });
