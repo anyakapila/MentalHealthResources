@@ -31,8 +31,8 @@
   <!--  card list + map -->
 
   <div class="flex-container">
+  
   <!-- list -->
-
   <PlaceList
    ref="placeList"
    :places="data?.places"
@@ -116,7 +116,7 @@ export default {
 
         this.$nextTick(() => {
           this.initMap(); // initializing map
-          this.searchPlaces() // run initial search in case
+          this.searchPlaces() // run initial search
         });
       },
       (error) => {
@@ -182,7 +182,7 @@ export default {
     } else {
       this.expandedCards.add(index);
     }
-    // Force reactivity 
+    // force reactivity 
     this.expandedCards = new Set(this.expandedCards);
     },
 
@@ -317,48 +317,9 @@ export default {
   width: 60%;
 }
 
-.toggle-hours-btn {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    background-color: var(--color-text);
-    color: var(--color-background);
-    margin: 1rem;
-}
-
-.toggle-hours-btn:hover {
-    background-color: var(--color-bigheading);
-}
-
 .flex-container {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
-}
-
-.list-panel {
-  width: 30%;
-  height: 500px;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.list-panel::-webkit-scrollbar {
-  display: none;
-}
-
-.map-panel {
-  width: 70%;
-  height: 500px;
-}
-
-.map-inner {
-  width: 100%;
-  height: 100%; 
-  border-radius: 5px;
 }
 </style>

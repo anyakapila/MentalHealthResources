@@ -9,7 +9,7 @@
       <br>
     </li>
 
-    <div class="image-grid">
+    <div class="card image-grid">
       <div class="image-card">
         <img src="@/assets/page_why/why1.png" alt="Survey Result 1"/>
       </div>

@@ -32,7 +32,7 @@ const { title, options, modelValue } = defineProps({
 const emit = defineEmits(['update:modelValue', 'clear']);
 
 function handleToggle(value) {
-  const updated = [...modelValue]; // ✅ now this works
+  const updated = [...modelValue]; 
   const index = updated.indexOf(value);
   if (index > -1) {
     updated.splice(index, 1);
