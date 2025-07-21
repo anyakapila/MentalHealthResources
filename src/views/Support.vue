@@ -62,6 +62,7 @@ import PlaceCard from '@/assets/page_support/PlaceCard.vue'
 </script>
 
 <script>
+import { loadGoogleMaps } from '@/assets/page_support/loadingGoogleMaps.js'
 import { getCurrentLocation } from '@/assets/page_support/location.js'
 import { nextTick } from 'vue';
 import Map from '@/assets/page_support/Map.vue';
@@ -109,15 +110,22 @@ export default {
     this.loading = true;
 
     getCurrentLocation(
-      (position) => {
+      async (position) => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
         console.log("User Location:", this.lat, this.lng);
 
-        this.$nextTick(() => {
-          this.initMap(); // initializing map
-          this.searchPlaces() // run initial search
+        try {
+          await loadGoogleMaps(); // wait for gmaps to be ready
+          this.$nextTick(() => {
+            this.initMap(); // initializing map
+            this.searchPlaces() // run initial search
         });
+        } catch (err) {
+          console.error('Failed to load Google Maps:', err);
+          this.error = 'Google Maps failed to load.';
+          this.loading = false;
+        }
       },
       (error) => {
         this.error = 'Geolocation error: ' + error.message;
