@@ -29,6 +29,7 @@
 </div>
 
    <div class="filtered-list">
+   <ul>
     <li
       class="card"
       v-for="article in filteredArticles" 
@@ -37,7 +38,9 @@
       <strong>{{ article.title }}</strong></a><br />
       <em>{{ article.source }}</em><br />
     </li>
-    </div>
+    </ul>
+   </div>
+
   </main>
 </template>
 

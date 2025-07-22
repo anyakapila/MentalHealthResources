@@ -29,6 +29,7 @@
 </div>
 
    <div class="filtered-list">
+   <ul>
     <li 
       class="card"
       v-for="hotline in filteredHotlines" 
@@ -44,6 +45,7 @@
 
       <em>{{ hotline.number }}</em><br />
     </li>
+    </ul>
     </div>
 
   </main>

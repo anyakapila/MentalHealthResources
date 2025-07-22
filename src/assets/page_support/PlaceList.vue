@@ -55,13 +55,22 @@ defineExpose({ scrollToCard });
 .list-panel {
   width: 30%;
   height: 500px;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  padding-right: 0.5rem;
+  overflow-y: auto;
+  scrollbar-width: thin; 
+  scrollbar-color: var(--color-heading) transparent; 
 }
 
 .list-panel::-webkit-scrollbar {
-  display: none;
+  width: 6px;
+}
+
+.list-panel::-webkit-scrollbar-track {
+  background: transparent;  /* track color */
+}
+
+.list-panel::-webkit-scrollbar-thumb {
+  background-color: var(--color-heading); /* thumb color */
 }
 
 </style>

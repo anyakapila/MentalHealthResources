@@ -137,14 +137,17 @@ export default {
 
     methods: {
 
-    initMap() {
+    async initMap() {
       const mapDiv = this.$refs.mapRef?.mapEl
       if (!mapDiv) {
         console.warn('Map element not ready yet');
         return;
       }
 
-      this.map = new google.maps.Map(mapDiv, {
+      console.log('Map ref:', this.$refs.mapRef);
+      const { Map } = await google.maps.importLibrary("maps");
+
+      this.map = new Map(mapDiv, {
         center: { lat: this.lat, lng: this.lng },
         zoom: 14,
       });
