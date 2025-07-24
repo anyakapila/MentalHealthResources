@@ -15,7 +15,7 @@
 
     <div>
      <button class="distance" @click="emit('toggleUnit')">
-        In {{ unit === 'meters' ? 'Feet' : 'Meters' }}
+        Show In {{ unit === 'meters' ? 'Miles' : 'Meters' }}
      </button>
     </div>
     
@@ -27,7 +27,7 @@
 const props = defineProps({
     modelValue: Number, // selectedDistance
     distances: Array, // convertedDistances
-    unit: String // 'meters' or 'feet'
+    unit: String // 'meters' or 'miles'
 });
 
 const emit = defineEmits(['update:modelValue', 'toggleUnit']);

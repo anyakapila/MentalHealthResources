@@ -81,9 +81,9 @@ export default {
       markers: [],
       expandedCards: new Set(),
       selectedPlaceId: null,
-      unit: 'meters', // default unit is meters
-      selectedDistance: 500, // stored in meters
-      baseDistances: [500, 1000], // distances always in meters
+      unit: 'miles', // default unit is meters
+      selectedDistance: 1609, // stored in meters
+      baseDistances: [1609, 4828], // distances always in meters
       mapRef: null,
     };
   },
@@ -96,10 +96,10 @@ export default {
             label: `${meters} meters`,
           };
         } else {
-          const feet = Math.round(meters / 0.3048);
+          const miles = Math.round(meters / 1609);
           return {
             value: meters, // still use meters for api call
-            label: `${feet} feet`,
+            label: `${miles} miles`,
           };
         }
       });
