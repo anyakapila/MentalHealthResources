@@ -1,7 +1,6 @@
 <template>
   <main>
   <Header title="Hotlines" subtitle="Here are some hotlines you can call for immediate support." />
-  <Nav />
 
    <div class= "filter-container">
     <div class="filter-box">
@@ -53,7 +52,6 @@
 
 <script setup>
 import Header from '@/components/Header.vue'
-import Nav from '@/components/Nav.vue'
 import { useHotlineFilter } from '@/assets/page_hotlines/hotlinesfilter.js'
 
 const {

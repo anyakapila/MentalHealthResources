@@ -34,8 +34,9 @@
 }
 
 .nav-links a {
+  font-size: 1em;
   font-weight: 700;
-  color: (--color-bigheading);
+  color: var(--color-bigheading);
   text-decoration: none;
   transition: color 0.3s;
 }

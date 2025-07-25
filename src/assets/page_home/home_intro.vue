@@ -29,12 +29,11 @@ const gotoSupport = () => {
 
 .intro {
     background: linear-gradient(to right , #83b0e1, #0A1C30);
-    padding: 4rem 1rem;
     text-align: center;
-    display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 70vh;
+    display: flex;
+    min-height: 80vh;
     width: 100%;
 }
 

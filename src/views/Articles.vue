@@ -1,7 +1,6 @@
 <template>
   <main>
   <Header title="Articles" subtitle="Find credible information, easily summarized." />
-  <Nav />
 
 <div class= "filter-container">
   <div class="filter-box">
@@ -46,7 +45,6 @@
 
 <script setup>
 import Header from '@/components/Header.vue'
-import Nav from '@/components/Nav.vue'
 import { useArticleFilter } from '@/assets/page_articles/articlesfilter.js'
 
 const {

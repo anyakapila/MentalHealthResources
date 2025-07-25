@@ -1,9 +1,32 @@
 .filtered-list {
   list-style-type: none;
   padding: 0;
-  max-width: 800px;
+  max-height: 100vh;
+  width: 100%;
   align-items: center;
   margin: 0.5rem auto;
+  padding-right: 1rem;
+  overflow-y: auto;
+  scrollbar-width: thin; 
+  scrollbar-color: var(--color-heading) transparent; 
+}
+
+.filtered-list ul {
+  padding-right: 0.5rem;
+  margin: 0;
+  list-style: none;
+}
+
+.filtered-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filtered-list::-webkit-scrollbar-track {
+  background: transparent;  /* track color */
+}
+
+.filtered-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-heading); /* thumb color */
 }
 
 .filter-container {

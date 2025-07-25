@@ -1,7 +1,6 @@
 <template>
   <main>
   <Header title="Support" subtitle="Find the support provider for you." />
-  <Nav />
 
   <div class="filter-container">
 
@@ -54,7 +53,6 @@
 
 <script setup>
 import Header from '@/components/Header.vue'
-import Nav from '@/components/Nav.vue'
 import CategoryFilter from '@/assets/page_support/CategoryFilter.vue'
 import RadiusFilter from '@/assets/page_support/RadiusFilter.vue'
 import PlaceList from '@/assets/page_support/PlaceList.vue'

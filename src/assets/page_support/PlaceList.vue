@@ -53,8 +53,8 @@ defineExpose({ scrollToCard });
 <style scoped>
 
 .list-panel {
+  height: 100vh;
   width: 30%;
-  height: 500px;
   padding-right: 0.5rem;
   overflow-y: auto;
   scrollbar-width: thin; 
