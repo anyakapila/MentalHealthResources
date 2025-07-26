@@ -1,43 +1,24 @@
-import { ref, computed, onMounted } from 'vue'
+import { ref } from 'vue'
 import hotlineData from './hotlines.json'
+import { useFilter } from '@/composables/useFilter.js'
 
 export function useHotlineFilter() {
-    const hotlines = ref([])
-    const categories = ref([])
-    const selectedCategories = ref([])
+    const hotlines = ref(hotlineData.hotlines)
+    const categories = ref(hotlineData.categories)
 
-    onMounted(() => {
-        hotlines.value = hotlineData.hotlines
-        categories.value = hotlineData.categories
-    })
-
-    // get category name by id
-    const getCategoryName = (id) => {
-        const category = categories.value.find(c => c.id == id)
-        return category ? category.name : 'Unknown Category'
-    }
-
-    // get category names for menu
-    const categoryNames = computed(() => 
-        categories.value.map(c => c.name)
+    const {
+        selectedCategories,
+        categoryOptions,
+        filteredItems: filteredHotlines
+    } = useFilter(
+        hotlines,
+        categories,
+        item => item.categories
     )
-
-    // filter hotlines by selected category
-    const filteredHotlines = computed(() => {
-        if (selectedCategories.value.length === 0) return hotlines.value
-
-        return hotlines.value.filter(hotline =>
-            hotline.categories.some(catId => {
-                const name = getCategoryName(catId)
-                return selectedCategories.value.includes(name)
-            })
-        )
-    })  
 
     return {
         selectedCategories,
-        categoryNames,
-        filteredHotlines,
-        getCategoryName
+        categoryOptions,
+        filteredHotlines
     }
 }

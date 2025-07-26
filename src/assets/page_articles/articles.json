@@ -5,7 +5,7 @@
     {
       "id": "1",
       "title": "Taking on the Stigma of ADHD",
-      "source": "National Library of Medicine",
+      "info": "National Library of Medicine",
       "url": "https://magazine.medlineplus.gov/article/taking-on-the-stigma-of-adhd/",
       "categories": [
         1, 2
@@ -14,7 +14,7 @@
     {
      "id": "2",
       "title": "Pathway to Effective Treatment for Common Mental and Substance Use Disorders in the World Mental Health Surveys: Perceived Need for Treatment",
-      "source": "International Journal of Mental Health Systems",
+      "info": "International Journal of Mental Health Systems",
       "url": "https://ijmhs.biomedcentral.com/articles/10.1186/s13033-025-00666-w",
       "categories": [
         4
@@ -23,7 +23,7 @@
     {
      "id": "3",
       "title": "15 Things to Do If You're Feeling Lonely",
-      "source": "Mental Health Foundation",
+      "info": "Mental Health Foundation",
       "url": "https://www.mentalhealth.org.uk/publications/15-things-do-if-youre-feeling-lonely",
       "categories": [
         3
@@ -32,7 +32,7 @@
     {
       "id": "4",
       "title": "Caring for Your Mental Health",
-      "source": "National Institute of Mental Health",
+      "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
       "categories": [
         3
@@ -41,7 +41,7 @@
     {
       "id": "5",
       "title": "Depression",
-      "source": "National Institute of Mental Health",
+      "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/topics/depression",
       "categories": [
         5
@@ -50,7 +50,7 @@
     {
       "id": "6",
       "title": "What is Depression and What Can I Do About It?",
-      "source": "Medical News Today",
+      "info": "Medical News Today",
       "url": "https://www.medicalnewstoday.com/articles/8933",
       "categories": [
         5
@@ -59,7 +59,7 @@
     {
       "id": "7",
       "title": "Bipolar Disorders: An Update on Critical Aspects",
-      "source": "The Lancet Regional Health - Europe",
+      "info": "The Lancet Regional Health - Europe",
       "url": "https://www.thelancet.com/journals/lanepe/article/PIIS2666-7762(24)00304-1/fulltext",
       "categories": [
         4, 6
@@ -68,7 +68,7 @@
     {
       "id": "8",
       "title": "Mental Health",
-      "source": "Harvard Health Publishing - Harvard Medical School",
+      "info": "Harvard Health Publishing - Harvard Medical School",
       "url": "https://www.health.harvard.edu/topics/mental-health",
       "categories": [
         3
@@ -77,7 +77,7 @@
     {
       "id": "9",
       "title": "Obsessive-Compulsive Disorder (OCD)",
-      "source": "Harvard Health Publishing - Harvard Medical School",
+      "info": "Harvard Health Publishing - Harvard Medical School",
       "url": "https://www.health.harvard.edu/mind-and-mood/obsessive-compulsive-disorder-ocd-a-to-z",
       "categories": [
         2
@@ -86,7 +86,7 @@
     {
       "id": "10",
       "title": "Stigma, Prejudice and Discrimination Against People with Mental Illness",
-      "source": "American Psychiatric Association",
+      "info": "American Psychiatric Association",
       "url": "https://www.psychiatry.org/patients-families/stigma-and-discrimination",
       "categories": [
         4
@@ -95,7 +95,7 @@
     {
       "id": "11",
       "title": "Mental Health of Adolescents",
-      "source": "World Health Organization",
+      "info": "World Health Organization",
       "url": "https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health",
       "categories": [
         4
@@ -104,7 +104,7 @@
     {
       "id": "12",
       "title": "Managing Stress",
-      "source": "Centers for Disease Control and Prevention",
+      "info": "Centers for Disease Control and Prevention",
       "url": "https://www.cdc.gov/mental-health/living-with/index.html",
       "categories": [
         3
@@ -113,7 +113,7 @@
     {
       "id": "13",
       "title": "11 Healthy Ways to Handle Life's Stressors",
-      "source": "American Psychological Association",
+      "info": "American Psychological Association",
       "url": "https://www.apa.org/topics/stress/tips",
       "categories": [
         3
@@ -122,7 +122,7 @@
     {
       "id": "14",
       "title": "Understanding Drug Use and Addiction",
-      "source": "National Institute on Drug Abuse",
+      "info": "National Institute on Drug Abuse",
       "url": "https://nida.nih.gov/publications/drugfacts/understanding-drug-use-addiction",
       "categories": [
         7
@@ -131,7 +131,7 @@
     {
       "id": "15",
       "title": "Risk and Protective Factors of Drug Abuse Among Adolescents: A Systematic Review",
-      "source": "BMC Public Health",
+      "info": "BMC Public Health",
       "url": "https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-021-11906-2",
       "categories": [
         4, 7
@@ -140,7 +140,7 @@
     {
       "id": "15",
       "title": "Anxiety Disorders",
-      "source": "National Institute of Mental Health",
+      "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
       "categories": [
         8
@@ -149,7 +149,7 @@
     {
       "id": "16",
       "title": "Anxiety Disorders: Causes, Symptoms, Treatment & Types",
-      "source": "Cleveland Clinic",
+      "info": "Cleveland Clinic",
       "url": "https://my.clevelandclinic.org/health/diseases/9536-anxiety-disorders",
       "categories": [
         8
@@ -158,7 +158,7 @@
     {
       "id": "17",
       "title": "Anxiety and Panic Attacks",
-      "source": "Mind",
+      "info": "Mind",
       "url": "https://www.mind.org.uk/information-support/types-of-mental-health-problems/anxiety-and-panic-attacks/about-anxiety/",
       "categories": [
         8
@@ -167,7 +167,7 @@
     {
       "id": "18",
       "title": "Eating Disorders: What You Need to Know",
-      "source": "National Institute of Mental Health",
+      "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/publications/eating-disorders",
       "categories": [
         9
@@ -176,7 +176,7 @@
     {
       "id": "19",
       "title": "Anorexia Nervosa: What It Is, Symptoms & Treatment",
-      "source": "Cleveland Clinic",
+      "info": "Cleveland Clinic",
       "url": "https://my.clevelandclinic.org/health/diseases/9794-anorexia-nervosa",
       "categories": [
         9
@@ -185,7 +185,7 @@
     {
       "id": "20",
       "title": "Bulimia Nervosa: What It Is, Symptoms & Treatment",
-      "source": "Cleveland Clinic",
+      "info": "Cleveland Clinic",
       "url": "https://my.clevelandclinic.org/health/diseases/9795-bulimia-nervosa",
       "categories": [
         9
