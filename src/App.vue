@@ -7,6 +7,16 @@
   </main> 
 </template>
 
+<script> 
+import SignUp from '@/assets/user_accounts/SignUp.vue'
+
+export default {
+  components: {
+    SignUp
+  }
+};
+</script>
+
 <style scoped>
   main {
     line-height: 2;
