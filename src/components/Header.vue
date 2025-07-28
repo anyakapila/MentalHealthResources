@@ -7,8 +7,10 @@
         <h2>{{ subtitle }}</h2>
       </div>
 
-    <!-- sign up button -->
-      <router-link to = "/signup" class="signup-button">Sign Up</router-link>
+    <div class="buttons-container">
+      <router-link to = "/signup" class="button">Sign Up</router-link>
+      <router-link to = "/login" class="button">Log In</router-link>
+    </div>
 
     </div>
     <Nav />
@@ -73,10 +75,15 @@ h2 {
   width: clamp(60px, 10vw, 120px);
 }
 
-.signup-button {
+.buttons-container {
+  display: flex;
+  gap: 0.5rem;
   position: absolute;
   top: 2rem;
   right: 1rem;
+}
+
+.button {
   background-color: var(--color-bigheading);
   color: var(--color-background);
   padding: 0.25rem 0.6rem;
@@ -89,11 +96,14 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.signup-button:hover {
+.button:hover {
   background-color: var(--color-heading);
 }
+
 @media (max-width: 600px) {
   h1 {
     font-size: 1rem;
@@ -107,7 +117,7 @@ h2 {
     word-break: break-word;
   }
 
-  .signup-button {
+  .button {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
   }

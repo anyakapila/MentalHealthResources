@@ -6,7 +6,8 @@ import Why from '../views/Why.vue';
 import Support from '../views/Support.vue';
 import Hotlines from '../views/Hotlines.vue';
 import Articles from '../views/Articles.vue';
-import SignUp from '@/assets/user_accounts/SignUp.vue';
+import SignUp from '../views/SignUp.vue';
+import Login from '../views/Login.vue';
 
 const routes = [
   { path: '/', component: Home },
@@ -15,6 +16,7 @@ const routes = [
   { path: '/hotlines', component: Hotlines },
   { path: '/articles', component: Articles },
   { path: '/signup', component: SignUp },
+  { path: '/login', component: Login}
 ];
 
 const router = createRouter({
