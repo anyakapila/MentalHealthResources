@@ -15,12 +15,21 @@ defineExpose({ mapEl });
 <style scoped>
 .map-panel {
   width: 70%;
-  height: 100vh;
+  height: 65vh;
 }
 
 .map-inner {
   width: 100%;
   height: 100%; 
   border-radius: 5px;
+}
+
+
+@media (max-width: 700px) {
+  .map-panel {
+    width: 100%;
+    height: 300px;
+    order: 1;
+  }
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
-<div class="filter-box">
+<div class="filter-section">
+<div class="filter-box" v-show="filtersVisible">
     <h3 class="filter-title">{{ title }}</h3>
 
     <div class="category-tags">
@@ -23,6 +24,13 @@
     </button>
   </div>
 
+<div class="buttons">
+<button class="filter-toggle" @click="filtersVisible = !filtersVisible">
+    {{ filtersVisible ? 'Hide Filters' : 'Show Filters' }}
+</button>
+</div>
+</div>
+
 <div class="filtered-list" v-if="filteredItems.length">
    <ul>
     <li v-for="item in filteredItems" :key="item.title" class="card">
@@ -36,6 +44,8 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 const props = defineProps({
     title: {
         type: String,
@@ -50,10 +60,12 @@ const props = defineProps({
         required: true,
         default: () => []
     },
-    filteredItems: Array
+    filteredItems: Array,
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
+
+const filtersVisible = ref(true); 
 
 function handleToggle(value) {
     const updated = [...props.modelValue]
@@ -73,3 +85,22 @@ function clearFilters() {
     emit('update:modelValue', [])
 }
 </script>
+
+<style scoped>
+.filter-toggle {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  padding: 0.4rem 1rem;
+  background-color: var(--color-text);
+  color: var(--color-background);
+  border: none;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.filter-toggle:hover {
+  background-color: var(--color-bigheading);
+}
+</style>

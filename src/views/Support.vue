@@ -2,8 +2,7 @@
   <main>
   <Header title="Support" subtitle="Find the support provider for you." />
 
-  <div class="filter-container">
-
+  <div class="filter-container" v-show="filtersVisible">
     <!-- category filter -->
     <CategoryFilter
       title="Filter by Need"
@@ -24,8 +23,11 @@
       :unit="unit"
       @toggleUnit="toggleUnit"
     />
-
   </div>
+
+  <button class="filter-toggle" @click="filtersVisible = !filtersVisible">
+    {{ filtersVisible ? 'Hide Filters' : 'Show Filters' }}
+  </button>
   
   <!--  card list + map -->
 
@@ -83,6 +85,7 @@ export default {
       selectedDistance: 1609, // stored in meters
       baseDistances: [1609, 4828], // distances always in meters
       mapRef: null,
+      filtersVisible: true,
     };
   },
   computed: {
@@ -330,5 +333,40 @@ export default {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+}
+
+@media (max-width: 700px) {
+.flex-container {
+  flex-direction: column;
+}
+
+.map-panel {
+  order: 1;
+  width: 100% !important;
+  height: 300px;
+}
+
+.list-panel {
+  order: 2;
+  width: 100% !important;
+  max-height: 50vh;
+}
+}
+
+.filter-toggle {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  padding: 0.4rem 1rem;
+  background-color: var(--color-text);
+  color: var(--color-background);
+  border: none;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.filter-toggle:hover {
+  background-color: var(--color-bigheading);
 }
 </style>

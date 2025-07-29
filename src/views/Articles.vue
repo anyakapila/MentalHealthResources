@@ -1,7 +1,6 @@
 <template>
   <main>
   <Header title="Articles" subtitle="Find credible information, easily summarized." />
-
 <div class="filter-container">
   <Filter
     title="Filter by Categories"
@@ -10,7 +9,6 @@
     :filteredItems="filteredArticles"
   />
 </div>
-
   </main>
 </template>
 

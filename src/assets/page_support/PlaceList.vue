@@ -53,7 +53,7 @@ defineExpose({ scrollToCard });
 <style scoped>
 
 .list-panel {
-  height: 100vh;
+  height: 65vh;
   width: 30%;
   padding-right: 0.5rem;
   overflow-y: auto;
@@ -71,6 +71,16 @@ defineExpose({ scrollToCard });
 
 .list-panel::-webkit-scrollbar-thumb {
   background-color: var(--color-heading); /* thumb color */
+}
+
+
+@media (max-width: 700px) {
+  .list-panel {
+    width: 100%;
+    height: auto;
+    max-height: 50vh; 
+    order: 2;
+  }
 }
 
 </style>
