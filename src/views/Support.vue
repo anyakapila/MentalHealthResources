@@ -19,7 +19,6 @@
     <!-- radius filter -->
     <RadiusFilter 
       v-model="selectedDistance"
-      :distances="convertedDistances"
       :unit="unit"
       @toggleUnit="toggleUnit"
     />
@@ -82,9 +81,7 @@ export default {
       expandedCards: new Set(),
       selectedPlaceId: null,
       unit: 'miles', // default unit is meters
-      selectedDistance: 1609, // stored in meters
-      baseDistances: [1609, 4828], // distances always in meters
-      mapRef: null,
+      selectedDistance: 30 * 1609.344, // 30 miles, stored in meters      mapRef: null,
       filtersVisible: true,
     };
   },
@@ -97,7 +94,7 @@ export default {
             label: `${meters} meters`,
           };
         } else {
-          const miles = Math.round(meters / 1609);
+          const miles = Math.round(meters / 1609.344);
           return {
             value: meters, // still use meters for api call
             label: `${miles} miles`,
@@ -108,6 +105,7 @@ export default {
   },
 
   created() {
+    this.debouncedSearch = this.debounce(this.searchPlaces, 500);
     this.loading = true;
 
     getCurrentLocation(
@@ -137,7 +135,13 @@ export default {
   },
 
     methods: {
-
+    debounce(func, wait = 500) {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    },
     async initMap() {
       const mapDiv = this.$refs.mapRef?.mapEl
       if (!mapDiv) {
@@ -168,7 +172,7 @@ export default {
     }, 
 
     async toggleUnit() {
-      this.unit = this.unit === 'meters' ? 'feet' : 'meters';
+      this.unit = this.unit === 'meters' ? 'miles' : 'meters';
 
       // wait for dropdown to update before triggering anything else
     },
@@ -233,16 +237,21 @@ export default {
         ? this.selectedFilters.join(' ')
         : 'mental health'; // fallback
 
-      const radius = this.getDistanceInMeters();
+      let radius = Math.round(this.getDistanceInMeters());
+      if (!radius || radius <= 0) radius = 1000; // default to 1km if invalid
+      if (radius > 50000) radius = 50000;
+    
       console.log(`API call with radius: ${radius} meters`);
 
+      const apiKey = 'AIzaSyCgqfNRutkyQfLKxOsZL_HBAsBxnHjzZ14';
+      const fields = 'places.displayName,places.formattedAddress,places.regularOpeningHours.weekdayDescriptions,places.nationalPhoneNumber,places.websiteUri,places.location';
+      const url = `https://places.googleapis.com/v1/places:searchText?key=${apiKey}&fields=${encodeURIComponent(fields)}`;
+
       try {
-        const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
+        const response = await fetch(url, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
-              'X-Goog-Api-Key': 'AIzaSyCgqfNRutkyQfLKxOsZL_HBAsBxnHjzZ14',
-              'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.regularOpeningHours.weekdayDescriptions,places.nationalPhoneNumber,places.websiteUri,places.location',
             },
             body: JSON.stringify({
               textQuery: keyword ,
@@ -307,8 +316,9 @@ export default {
     },
 
   watch: {
-    selectedDistance() {
-      this.searchPlaces();
+    selectedDistance(newVal) {
+      if (!newVal || newVal <= 0 || isNaN(newVal)) return;
+      this.debouncedSearch();
     },
     selectedFilters: {
       handler() {
