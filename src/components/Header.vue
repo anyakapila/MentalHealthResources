@@ -8,8 +8,15 @@
       </div>
 
     <div class="buttons-container">
-      <router-link to = "/signup" class="button">Sign Up</router-link>
-      <router-link to = "/login" class="button">Log In</router-link>
+      <!-- if user isnt logged in -->
+      <router-link v-if="!user" to = "/signup" class="button">Sign Up</router-link>
+      <router-link v-if="!user" to = "/login" class="button">Log In</router-link>
+
+      <!-- if user logged in -->
+      <button v-else @click="logout" class="button">
+      <span v-if="!loggingOut">Log Out</span>
+      <span v-else>Logging out...</span>
+      </button>
     </div>
 
     </div>
@@ -17,12 +24,41 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import Nav from '@/components/Nav.vue'
 
+//props
 defineProps({
   title: String,
   subtitle: String
 })
+
+//track user auth
+const user = ref(null)
+const loggingOut = ref(false)
+const auth = getAuth()
+
+onMounted(() => {
+  onAuthStateChanged(auth, (currentUser) => {
+    user.value = currentUser
+  })
+})
+
+//logout
+const logout = async () => {
+  loggingOut.value = true
+  try {
+    await signOut(auth)
+  } catch (err) {
+    console.error('Logout error:', err)
+  } finally {
+    //delay logout 
+    setTimeout(() => {
+      loggingOut.value = false
+    }, 1500)
+  }
+}
 </script>
 
 <style scoped>
@@ -30,7 +66,6 @@ defineProps({
 .header {
   position: relative;
   display: flex;
-  flex-direction: columnn;
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;

@@ -9,7 +9,7 @@
       :loadingText="'Logging in...'"
       :loading="loading"
       :initialValues="{ email: '', password: '' }"
-      @submit="handleLogin"
+      @submit-form="handleLogin"
     >
       <template #messages>
         <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
@@ -57,11 +57,22 @@ export default {
   },
   methods: {
     async handleLogin(form) {
+      console.log("handleLogin received:", form);
+      if (form instanceof SubmitEvent) {
+        console.warn("Ignoring native submit event.");
+        return;
+      }
+
+      console.log("Form data:", form);
       this.errorMessage = '';
       this.successMessage = '';
       this.loading = true;
 
       try {
+        if (!form.email || !form.password) {
+          this.errorMessage = 'Email and password are required.';
+        }
+
         const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
         console.log('Logged in:', userCredential.user);
 

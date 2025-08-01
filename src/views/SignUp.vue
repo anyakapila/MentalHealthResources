@@ -9,7 +9,7 @@
       :loadingText="'Creating...'"
       :loading="loading"
       :initialValues="{ email: '', password: '' }"
-      @submit="handleSignup"
+      @submit-form="handleSignup"
     >
       <template #messages>
         <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
@@ -58,9 +58,18 @@ export default {
   },
   methods: {
     async handleSignup(form) {
+      if (form instanceof SubmitEvent) {
+        console.warn("Received SubmitEvent instead of form data. Ignoring.");
+        return;
+      }
+      console.log("Form data:", form);
       this.errorMessage = '';
       this.successMessage = '';
       this.loading = true;
+      
+      if (!form.email || !form.password) {
+        this.errorMessage = 'Email and password are required.';
+      }
 
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.password);

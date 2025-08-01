@@ -1,5 +1,5 @@
 <template>
- <form @submit.prevent="handleSubmit" class="user-form">
+ <form @submit="handleSubmit" class="user-form">
  <h2>{{ title }}</h2>
 
  <div v-for="field in fields" :key="field.id">
@@ -44,8 +44,11 @@ export default {
         };
     },
     methods: {
-        handleSubmit() {
-            this.$emit('submit', this.formData);
+        handleSubmit(event) {
+          event.preventDefault();
+          event.stopPropagation();
+          console.log('handleSubmit event:', event)
+          this.$emit('submit-form', this.formData);
         }
     }
 };
