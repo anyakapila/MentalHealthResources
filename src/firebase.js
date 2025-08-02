@@ -1,7 +1,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database"; // if you're using it
+import { getFirestore } from "firebase/firestore";
 
 // Your Firebase config object
 const firebaseConfig = {
@@ -18,6 +18,6 @@ const app = initializeApp(firebaseConfig);
 
 // Export Firebase services for use in your components
 const auth = getAuth(app);
-const database = getDatabase(app);
+const database = getFirestore(app);
 
 export { auth, database };
