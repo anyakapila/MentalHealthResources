@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "anya-mentalhealthresources",
+  "private_key_id": "11c3fbda21ceef0ae93817fa69eef6fb6d202c15",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDYdPe8htI5PeRS\nFota5rR3eVROaiopnb1BYqyALZcb07Y5T4jC2YAScbIf7n6jbKM5VEJbvglRMIqX\nydsvlVMYK2brGC0soD8lFu56bov4pvPV5zJkZoDkYWwQkoxoqEaQFZ6XcyY1EmGR\n7qzYnMOAdob4DjEklbCfmYvN1hJvEpaVAzI9FLZk7RlUluIjCDaRgKpj/G/uR9VU\nE/kDNa0Fa+7CN7PLc+1t4ckomQ3gorgZkB9XyuvpsuI38c7TS52qvnjFnGOLfaMj\nA+HCQYBIujHqd4oUJvbv1aUjGaQLWYjhC7mbl8T+PM88nw12DNW/mJVgzA314lmE\nn4MxdN/VAgMBAAECggEAKNGX9TisdKh4AcXoFiaK8jvSWu440LvDGI05z/so85Gv\nW6vks6/t76x6pXxla76dIj7CO8hAvAuOGzUw7Q55CsYGhL98p115wu4J31Mw+J1N\nPrF4ZogQ9uBrT02/hi3zjpDRJSjNE/WJKkqq1Ddtw7A2YBlXCZnj4pkDTPf5ZnHv\nYRCsY1p1uUTnkd14NjpxyTn1PVtvhpRuX/JX9KQwEaxfIkHzSw+xOwtPqzZlX/Bd\n1WXQ3f14sLhKIW39VoCeTK/cXIyADoBXiaFVYTFGHZMaF1xs3ICkoB/lEmjwkMiY\n6ybj6GG8TBoNTOF9UfAl+23Av5094ev3mtIkt0H7UQKBgQDvnZ9/WiYx0vVJwYxQ\nTwIBAfIvvOMXRklZWbJHVHrAjgkaHq7UxT2Sueh8d8ZkBdtHop4mgjdngAZhDBFN\ncD7Aw7V0TsxpAM2wRNAwfTCfeaimA5hgq4DW93y9ocguj0plpvq9IfxU3bPa4S+I\n+Sm/1Esx8vZOOwM12o2po6zupQKBgQDnQfWBjirvG7bC+tVf01ZjTeNNzjAhCJBf\n2dMu7N/k2gRvd/dOpEwWcf0Aw0cdvi2kXl1nvHq0Bnl+fVPPVtxlZY2uABJmvd0O\n1nUgxJVvx88WTxAqqIaduuNiV/et8k/37JA967EvHo4CwpChRtbq8jtBNk+kFWp7\neHGsHpwVcQKBgQCdDTf8Vc8Q+w9Qj25zOMW8eVUO2wQRPj1XNgY24HUwfigTGadH\nyBvKbtWlty+uYXRPKJP184Vy7iPAOhOhKP/Igr4NBJTQAfnPHdtC3Nsgu7HBVjvq\nqJ5ix4XYGRDHC54csGxJyNvFmCaJQO1SHtWxaOj8TR4JOn6pLp2JYcE4DQKBgQCI\ncU8zqDjGqNhVA/+esSdYId1Jy6xz4QSluPQzzIhxEvzo86QTXzaRS6HVsGGmN83g\nG9kKWpce3m8SZUlsnLgejyNflSVGPyFNHtUuhy4QLJiPdgh40sPSDjEYlgRJOh1a\njtWv4v7AaUuqbzc8IHqvVkoFuNCWZBhWTwLqZYj70QKBgQCyEH0mvM+/ovM35J2s\nJZKuR8w/QyKIyTXhnsJG20RWxtBAUXoefD7W7vUq5jznS373Flw9pwxZqfG1+0J/\nijIkEI7w5TUB384WKo6khVr4WBm4h8ESaoFE9xVtT0rREPYsSBbLiR9g1cpRxG0v\neR7Rwjj/4D7SE1GbyriNibSfaw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@anya-mentalhealthresources.iam.gserviceaccount.com",
+  "client_id": "105955782246819465554",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40anya-mentalhealthresources.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
