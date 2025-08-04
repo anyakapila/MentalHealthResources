@@ -3,7 +3,14 @@ const admin = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const fs = require('fs');
+const path = require('path');
 
+app.use(cors({ origin: true }));
+app.use(express.json());
+
+// load articles.json 
+const articlesData = JSON.parse(fs.readFileSync(path.join(__dirname, 'articles.json'), 'utf8'));
 const serviceAccount = require('./permissions.json');
 
 admin.initializeApp({
@@ -12,9 +19,6 @@ admin.initializeApp({
 });
 
 const database = admin.firestore();
-
-app.use(cors({ origin: true }));
-app.use(express.json());
 
 // simple get endpoint
 app.get('/helloWorld', (req, res) => {
@@ -46,9 +50,9 @@ app.post('/api/saveArticle', async (req, res) => {
       if (!authHeader.startsWith('Bearer ')) {
         return res.status(401).send('Unauthorized: Missing or invalid Authorization header');
       }
-      const idToken = authHeader.split('Bearer ')[1];
-
+      
       // verify id token, get user info
+      const idToken = authHeader.split('Bearer ')[1];
       const decodedToken = await admin.auth().verifyIdToken(idToken);
       const uid = decodedToken.uid;
 
@@ -58,7 +62,15 @@ app.post('/api/saveArticle', async (req, res) => {
         return res.status(400).send('Missing articleId in request body');
       }
 
+      // check if article exists in articlesData
+      const articleExists = articlesData.articles.some(article => article.id === articleId);
+      if (!articleExists) {
+        return res.status(404).send('Article not found');
+      }
+
       const userDocRef = database.collection('users').doc(uid);
+
+      let action = 'added';
       
       await database.runTransaction(async (transaction) => {
         const userDoc = await transaction.get(userDocRef);
@@ -70,15 +82,23 @@ app.post('/api/saveArticle', async (req, res) => {
         const data = userDoc.data();
         const articles = data.articles || [];
 
-        // if article isnt already there add it to the articles array
-        if (!articles.includes(articleId)) {
-          articles.push(articleId);
-          transaction.update(userDocRef, { articles });
+        let updatedArticles = articles;
+
+        // if article isnt already there add it to the articles array, otherwise remove it
+        if (articles.includes(articleId)) {
+          // remove articleId from articles array
+          updatedArticles = articles.filter(id => id !== articleId);
+          action = 'removed';
+        } else {
+          // add articleId to articles array
+          updatedArticles = [...articles, articleId];
         }
+
+        transaction.update(userDocRef, { articles: updatedArticles });
       }
     });
-  
-      return res.status(200).send('Article saved to user profile');
+
+    return res.status(200).send(`Article ${action}`);
     } catch (error) {
       console.error('Error saving article:', error);
       return res.status(500).send(error.message);

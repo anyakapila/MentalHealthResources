@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import articleData from './articles.json'
+import articleData from '/functions/articles.json'
 import { useFilter } from '@/composables/useFilter.js'
 
 export function useArticleFilter() {

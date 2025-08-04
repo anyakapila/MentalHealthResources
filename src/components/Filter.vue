@@ -31,6 +31,9 @@
 </div>
 </div>
 
+<!-- optional slot for custom list rendering -->
+<slot>
+<!-- fallback rendering for non-custom -->
 <div class="filtered-list" v-if="filteredItems.length">
    <ul>
     <li v-for="item in filteredItems" :key="item.title" class="card">
@@ -41,6 +44,7 @@
     </ul>
    </div>
    <p v-else>No results found.</p>
+</slot>
 </template>
 
 <script setup>
