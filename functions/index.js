@@ -98,7 +98,9 @@ app.post('/api/saveArticle', async (req, res) => {
       }
     });
 
+    console.log("Success");
     return res.status(200).send(`Article ${action}`);
+    
     } catch (error) {
       console.error('Error saving article:', error);
       return res.status(500).send(error.message);

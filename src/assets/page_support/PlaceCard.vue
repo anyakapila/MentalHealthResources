@@ -72,4 +72,9 @@ defineEmits(['click', 'toggle-hours']);
     background-color: var(--color-bigheading);
 }
 
+.highlighted {
+  box-shadow: 0 4px 8px var(--color-heading);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
 </style>

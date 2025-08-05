@@ -56,7 +56,8 @@ async function toggleArticle(articleId) {
 
     const idToken = await user.getIdToken()
 
-    const response = await fetch('https://us-central1-anya-mentalhealthresources.cloudfunctions.net/app/api/saveArticle', {
+    const response = await fetch('http://127.0.0.1:5001/anya-mentalhealthresources/us-central1/app/api/saveArticle', {
+    // https://us-central1-anya-mentalhealthresources.cloudfunctions.net/app/api/saveArticle
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,6 +71,7 @@ async function toggleArticle(articleId) {
       return
     }
 
+    console.log("Article toggled successfully");
     message.value = await response.text()
   } catch (err) {
     error.value = err.message || 'An unknown error occured.'
