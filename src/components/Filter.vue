@@ -91,6 +91,7 @@ function clearFilters() {
 </script>
 
 <style scoped>
+
 .filter-toggle {
   margin-top: 1rem;
   margin-bottom: 0;

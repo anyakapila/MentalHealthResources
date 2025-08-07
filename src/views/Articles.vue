@@ -11,13 +11,16 @@
 <div class="filtered-list">
 <ul>
  <li v-for="article in filteredArticles" :key="article.id" class="card" style="margin-bottom: 1rem;">
-  <a :href="article.url" target="_blank" rel="noopener noreferrer">
-    <strong>{{ article.title }}</strong>
-  </a>
-  <p><em>{{ article.info }}</em></p>
-
+ <div class="card-content">
+   <a :href="article.url" target="_blank" rel="noopener noreferrer">
+     <strong>{{ article.title }}</strong>
+   </a>
+   <p><em>{{ article.info }}</em></p>
+ </div>
   <div v-if="user">
-    <button @click="toggleArticle(article.id)" class="star-button">
+    <button @click="toggleArticle(article.id)" 
+     class="star-button"
+     :class="{ filled: isSaved(article.id) }">
       {{ isSaved(article.id) ? '★' : '☆' }}
     </button>
   </div>
@@ -42,17 +45,13 @@ const savedArticles = ref(new Set())
 
 onMounted(() => {
   const auth = getAuth()
-
-  onAuthStateChanged(auth, async (u) => {
+  const unsubscribe = onAuthStateChanged(auth, async (u) => {
     user.value = u
-    console.log('Auth state changed:', u)
-
     if (u) {
       const idToken = await u.getIdToken()
       const res = await fetch('http://127.0.0.1:5001/anya-mentalhealthresources/us-central1/app/api/getSavedArticles', {
         headers: { Authorization: `Bearer ${idToken}` }
       })
-
       if (res.ok) {
         const data = await res.json()
         savedArticles.value = new Set(data.articleIds)
@@ -60,9 +59,11 @@ onMounted(() => {
       } else {
         console.error('Failed to fetch saved articles:', await res.text())
       }
-    } else {
-      savedArticles.value = new Set()
     }
+  })
+
+  onUnmounted(() => {
+    unsubscribe()
   })
 })
 
@@ -138,6 +139,17 @@ function isSaved(articleId) {
 </script>
 
 <style scoped>
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
 .star-button {
   font-size: 24px;
   background: none;
@@ -145,5 +157,9 @@ function isSaved(articleId) {
   cursor: pointer;
   color: var(--color-text);
   padding: 0;
+}
+
+.star-button.filled {
+  color: var(--color-bigheading);
 }
 </style>
