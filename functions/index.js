@@ -107,4 +107,38 @@ app.post('/api/saveArticle', async (req, res) => {
     }
 });
 
+app.get('/api/getSavedArticles', async (req, res) => {
+    try {
+      // get id token from auth header
+      const authHeader = req.headers.authorization || '';
+      if (!authHeader.startsWith('Bearer ')) {
+        return res.status(401).send('Unauthorized: Missing or invalid Authorization header');
+      }
+
+      // verify id token, get user info
+      const idToken = authHeader.split('Bearer ')[1];
+      const decodedToken = await admin.auth().verifyIdToken(idToken);
+      const uid = decodedToken.uid;
+
+      // reference to user doc
+      const userDocRef = database.collection('users').doc(uid);
+      const userDoc = await userDocRef.get();
+
+      // if doc doesn't exist, return empty list
+      if (!userDoc.exists) {
+        return res.status(200).json({ articleIds: [] });
+      }
+
+      const userData = userDoc.data();
+      const articleIds = userData.articles || [];
+
+      console.log(`Fetched saved articles for user ${uid}`);
+
+      return res.status(200).json({ articleIds });
+    } catch (error) {
+      console.error('Error fetching saved articles:', error);
+      return res.status(500).send(error.message);
+    }
+});
+
 exports.app = functions.https.onRequest(app);

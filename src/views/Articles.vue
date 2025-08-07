@@ -16,7 +16,11 @@
   </a>
   <p><em>{{ article.info }}</em></p>
 
-  <button @click="toggleArticle(article.id)">Save or Remove</button>
+  <div v-if="user">
+    <button @click="toggleArticle(article.id)" class="star-button">
+      {{ isSaved(article.id) ? '★' : '☆' }}
+    </button>
+  </div>
  </li>
 </ul>
 <p v-if="!filteredArticles.length">No results found.</p>
@@ -30,8 +34,37 @@
 import Header from '@/components/Header.vue'
 import Filter from '@/components/Filter.vue'
 import { useArticleFilter } from '@/assets/page_articles/articlesfilter.js'
-import { ref } from 'vue'
-import { getAuth } from 'firebase/auth'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+
+const user = ref(null)
+const savedArticles = ref(new Set())
+
+onMounted(() => {
+  const auth = getAuth()
+
+  onAuthStateChanged(auth, async (u) => {
+    user.value = u
+    console.log('Auth state changed:', u)
+
+    if (u) {
+      const idToken = await u.getIdToken()
+      const res = await fetch('http://127.0.0.1:5001/anya-mentalhealthresources/us-central1/app/api/getSavedArticles', {
+        headers: { Authorization: `Bearer ${idToken}` }
+      })
+
+      if (res.ok) {
+        const data = await res.json()
+        savedArticles.value = new Set(data.articleIds)
+        console.log('Loaded saved articles:', [...savedArticles.value])
+      } else {
+        console.error('Failed to fetch saved articles:', await res.text())
+      }
+    } else {
+      savedArticles.value = new Set()
+    }
+  })
+})
 
 const {
   selectedCategories,
@@ -43,18 +76,28 @@ const message = ref('')
 const error = ref('')
 
 async function toggleArticle(articleId) {
+  console.log("Toggling article with ID:", articleId)
+
   message.value = ''
   error.value = ''
 
   try {
     const auth = getAuth()
-    const user = auth.currentUser
-    if (!user) {
+    const currentUser = auth.currentUser
+    console.log("Current user:", currentUser)
+    if (!currentUser) {
       error.value = 'You must be logged in to save articles.'
       return
     }
 
-    const idToken = await user.getIdToken()
+    let idToken
+    try {
+      idToken = await currentUser.getIdToken()
+    } catch (tokenErr) {
+      console.error("Error getting ID token:", tokenErr)
+      error.value = 'Failed to get ID token.'
+      return
+    }
 
     const response = await fetch('http://127.0.0.1:5001/anya-mentalhealthresources/us-central1/app/api/saveArticle', {
     // https://us-central1-anya-mentalhealthresources.cloudfunctions.net/app/api/saveArticle
@@ -66,31 +109,41 @@ async function toggleArticle(articleId) {
       body: JSON.stringify({ articleId })
     })
 
+    const text = await response.text()
+    console.log("Response text:", text)
+    
     if (!response.ok) {
-      error.value = await response.text()
+      error.value = text
       return
     }
 
-    console.log("Article toggled successfully");
-    message.value = await response.text()
+    message.value = text
+
+    const action = text.includes('added') ? 'added' : 'removed'
+
+    if (action === 'added') {
+      savedArticles.value = new Set([...savedArticles.value, articleId])
+    } else {
+      savedArticles.value = new Set([...savedArticles.value].filter(id => id !== articleId))
+    }
+
   } catch (err) {
     error.value = err.message || 'An unknown error occured.'
   }
 }
+
+function isSaved(articleId) {
+  return savedArticles.value.has(articleId)
+}
 </script>
 
 <style scoped>
-button {
-  margin-top: 0.5rem;
-  cursor: pointer;
-  padding: 0.4rem 0.8rem;
+.star-button {
+  font-size: 24px;
+  background: none;
   border: none;
-  background-color: #2c7;
-  color: white;
-  border-radius: 4px;
-  font-weight: 600;
-}
-button:hover {
-  background-color: #239a00;
+  cursor: pointer;
+  color: var(--color-text);
+  padding: 0;
 }
 </style>

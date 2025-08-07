@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "articles": [
     {
-      "id": "1",
+      "id": 1,
       "title": "Taking on the Stigma of ADHD",
       "info": "National Library of Medicine",
       "url": "https://magazine.medlineplus.gov/article/taking-on-the-stigma-of-adhd/",
@@ -12,7 +12,7 @@
       ]
     },
     {
-     "id": "2",
+     "id": 2,
       "title": "Pathway to Effective Treatment for Common Mental and Substance Use Disorders in the World Mental Health Surveys: Perceived Need for Treatment",
       "info": "International Journal of Mental Health Systems",
       "url": "https://ijmhs.biomedcentral.com/articles/10.1186/s13033-025-00666-w",
@@ -21,7 +21,7 @@
       ] 
     },
     {
-     "id": "3",
+     "id": 3,
       "title": "15 Things to Do If You're Feeling Lonely",
       "info": "Mental Health Foundation",
       "url": "https://www.mentalhealth.org.uk/publications/15-things-do-if-youre-feeling-lonely",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "4",
+      "id": 4,
       "title": "Caring for Your Mental Health",
       "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "id": "5",
+      "id": 5,
       "title": "Depression",
       "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/topics/depression",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "6",
+      "id": 6,
       "title": "What is Depression and What Can I Do About It?",
       "info": "Medical News Today",
       "url": "https://www.medicalnewstoday.com/articles/8933",
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "7",
+      "id": 7,
       "title": "Bipolar Disorders: An Update on Critical Aspects",
       "info": "The Lancet Regional Health - Europe",
       "url": "https://www.thelancet.com/journals/lanepe/article/PIIS2666-7762(24)00304-1/fulltext",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "8",
+      "id": 8,
       "title": "Mental Health",
       "info": "Harvard Health Publishing - Harvard Medical School",
       "url": "https://www.health.harvard.edu/topics/mental-health",
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "9",
+      "id": 9,
       "title": "Obsessive-Compulsive Disorder (OCD)",
       "info": "Harvard Health Publishing - Harvard Medical School",
       "url": "https://www.health.harvard.edu/mind-and-mood/obsessive-compulsive-disorder-ocd-a-to-z",
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "10",
+      "id": 10,
       "title": "Stigma, Prejudice and Discrimination Against People with Mental Illness",
       "info": "American Psychiatric Association",
       "url": "https://www.psychiatry.org/patients-families/stigma-and-discrimination",
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "11",
+      "id": 11,
       "title": "Mental Health of Adolescents",
       "info": "World Health Organization",
       "url": "https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health",
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "12",
+      "id": 12,
       "title": "Managing Stress",
       "info": "Centers for Disease Control and Prevention",
       "url": "https://www.cdc.gov/mental-health/living-with/index.html",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "13",
+      "id": 13,
       "title": "11 Healthy Ways to Handle Life's Stressors",
       "info": "American Psychological Association",
       "url": "https://www.apa.org/topics/stress/tips",
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "14",
+      "id": 14,
       "title": "Understanding Drug Use and Addiction",
       "info": "National Institute on Drug Abuse",
       "url": "https://nida.nih.gov/publications/drugfacts/understanding-drug-use-addiction",
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "15",
+      "id": 15,
       "title": "Risk and Protective Factors of Drug Abuse Among Adolescents: A Systematic Review",
       "info": "BMC Public Health",
       "url": "https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-021-11906-2",
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "15",
+      "id": 16,
       "title": "Anxiety Disorders",
       "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "16",
+      "id": 17,
       "title": "Anxiety Disorders: Causes, Symptoms, Treatment & Types",
       "info": "Cleveland Clinic",
       "url": "https://my.clevelandclinic.org/health/diseases/9536-anxiety-disorders",
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "17",
+      "id": 18,
       "title": "Anxiety and Panic Attacks",
       "info": "Mind",
       "url": "https://www.mind.org.uk/information-support/types-of-mental-health-problems/anxiety-and-panic-attacks/about-anxiety/",
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "18",
+      "id": 19,
       "title": "Eating Disorders: What You Need to Know",
       "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/publications/eating-disorders",
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "19",
+      "id": 20,
       "title": "Anorexia Nervosa: What It Is, Symptoms & Treatment",
       "info": "Cleveland Clinic",
       "url": "https://my.clevelandclinic.org/health/diseases/9794-anorexia-nervosa",
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "20",
+      "id": 21,
       "title": "Bulimia Nervosa: What It Is, Symptoms & Treatment",
       "info": "Cleveland Clinic",
       "url": "https://my.clevelandclinic.org/health/diseases/9795-bulimia-nervosa",
@@ -194,39 +194,39 @@
   ],
 "categories": [
     {
-      "id": "1",
+      "id": 1,
       "name": "ADHD"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "OCD"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Tips for Managing Your Mental Health"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Studies and Research"
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Depression"
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "Bipolar Disorder"
     },
     {
-      "id": "7",
+      "id": 7,
       "name": "Substance Abuse"
     },
     {
-      "id": "8",
+      "id": 8,
       "name": "Anxiety Disorders"
     },
     {
-      "id": "9",
+      "id": 9,
       "name": "Eating Disorders"
     }
   ]
