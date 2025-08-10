@@ -2,15 +2,19 @@
   <main>
   <Header title="Articles" subtitle="Find credible information easily." />
 <div class="filter-container">
+
   <Filter
     title="Filter by Categories"
     :options="categoryOptions"
     v-model="selectedCategories"
     :filteredItems="filteredArticles"
+    :showSavedToggle="true"
+    v-model:savedView="showSaved"
   >
+
 <div class="filtered-list">
 <ul>
- <li v-for="article in filteredArticles" :key="article.id" class="card" style="margin-bottom: 1rem;">
+ <li v-for="article in showSaved ? savedArticlesList : filteredArticles" :key="article.id" class="card" style="margin-bottom: 1rem;">
  <div class="card-content">
    <a :href="article.url" target="_blank" rel="noopener noreferrer">
      <strong>{{ article.title }}</strong>
@@ -37,11 +41,12 @@
 import Header from '@/components/Header.vue'
 import Filter from '@/components/Filter.vue'
 import { useArticleFilter } from '@/assets/page_articles/articlesfilter.js'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 const user = ref(null)
 const savedArticles = ref(new Set())
+const showSaved = ref(false)
 
 onMounted(() => {
   const auth = getAuth()
@@ -136,6 +141,10 @@ async function toggleArticle(articleId) {
 function isSaved(articleId) {
   return savedArticles.value.has(articleId)
 }
+
+const savedArticlesList = computed(() => 
+  filteredArticles.value.filter(article => savedArticles.value.has(article.id))
+)
 </script>
 
 <style scoped>

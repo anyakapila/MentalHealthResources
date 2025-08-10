@@ -1,6 +1,29 @@
 <template>
 <div class="filter-section">
-<div class="filter-box" v-show="filtersVisible">
+ <div class="filter-row">
+
+<!-- saved toggle box, only show in articles.vue -->
+ <div class="filter-box" v-show="filtersVisible">
+  <h3 class="filter-title">Show Saved Articles</h3>
+    <div v-if="showSavedToggle" class="saved-toggle-box">
+      <button
+       :class="{ active: savedView }"
+       @click="emit('update:savedView', true)"
+      >
+      ★ Saved Articles
+      </button>
+      <h3 class="filter-title">Show All Articles</h3>
+      <button
+       :class="{ active: !savedView }"
+       @click="emit('update:savedView', false)"
+      >
+        All Articles
+      </button>
+    </div>
+  </div>
+
+<!-- category filter box -->
+ <div class="filter-box" v-show="filtersVisible">
     <h3 class="filter-title">{{ title }}</h3>
 
     <div class="category-tags">
@@ -20,9 +43,10 @@
     </div>
 
     <button class="clear-button" @click="clearFilters">
-      Clear Filter
+      Clear Filters
     </button>
   </div>
+</div>
 
 <div class="buttons">
 <button class="filter-toggle" @click="filtersVisible = !filtersVisible">
@@ -65,9 +89,18 @@ const props = defineProps({
         default: () => []
     },
     filteredItems: Array,
+    // optional toggle for articles
+    showSavedToggle: {
+      type: Boolean,
+      default: false
+    },
+    savedView: {
+      type: Boolean,
+      default: false  
+    } 
 })
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'update:savedView'])
 
 const filtersVisible = ref(true); 
 
@@ -92,6 +125,18 @@ function clearFilters() {
 
 <style scoped>
 
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filter-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
 .filter-toggle {
   margin-top: 1rem;
   margin-bottom: 0;
@@ -107,5 +152,32 @@ function clearFilters() {
 
 .filter-toggle:hover {
   background-color: var(--color-bigheading);
+}
+
+.saved-toggle-box {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background-color: var(--color-heading);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.saved-toggle-box button {
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--color-text);
+  color: var(--color-background);
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.saved-toggle-box button.active {
+  background-color: var(--color-bigheading);
+  color: var(--color-background);
 }
 </style>
