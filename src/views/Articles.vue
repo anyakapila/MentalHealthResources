@@ -31,6 +31,7 @@
  </li>
 </ul>
 <p v-if="!filteredArticles.length">No results found.</p>
+<p v-if="!savedArticlesList.length">No saved articles found.</p>
 </div>
 </Filter>
 </div>

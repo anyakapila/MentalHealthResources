@@ -3,9 +3,10 @@
  <div class="filter-row">
 
 <!-- saved toggle box, only show in articles.vue -->
+<div v-if="user && showSavedToggle">
  <div class="filter-box" v-show="filtersVisible">
   <h3 class="filter-title">Show Saved Articles</h3>
-    <div v-if="showSavedToggle" class="saved-toggle-box">
+    <div class="saved-toggle-box">
       <button
        :class="{ active: savedView }"
        @click="emit('update:savedView', true)"
@@ -21,6 +22,7 @@
       </button>
     </div>
   </div>
+</div>
 
 <!-- category filter box -->
  <div class="filter-box" v-show="filtersVisible">
@@ -72,7 +74,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+
+const user = ref(null)
+
+onMounted(() => {
+  const auth = getAuth()
+  onAuthStateChanged(auth, (u) => {
+    user.value = u
+  })
+})
 
 const props = defineProps({
     title: {
@@ -132,9 +144,11 @@ function clearFilters() {
 }
 
 .filter-row {
+  flex: 1;
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  align-items: stretch;
 }
 
 .filter-toggle {
@@ -156,6 +170,7 @@ function clearFilters() {
 
 .saved-toggle-box {
   margin-top: 1rem;
+  height: 100%;
   padding: 0.8rem;
   border: 1px solid var(--color-border);
   border-radius: 5px;

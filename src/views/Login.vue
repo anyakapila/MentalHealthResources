@@ -26,6 +26,7 @@
 <script>
 import UserForm from '@/components/UserForm.vue';
 import { auth } from '@/firebase';
+import { useRoute, useRouter } from 'vue-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default {
@@ -76,9 +77,13 @@ export default {
         const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
         console.log('Logged in:', userCredential.user);
 
+        // grab redirect or fallback to home
+        const redirectPath = this.$route.query.redirect || '/';
+
         this.successMessage = 'Login successful! Redirecting...';
+        
         setTimeout(() => {
-          this.$router.push('/');
+          this.$router.push(redirectPath);
         }, 1500);
       } catch (error) {
         console.error('Login error:', error);

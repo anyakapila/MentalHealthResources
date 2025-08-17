@@ -9,8 +9,18 @@
 
     <div class="buttons-container">
       <!-- if user isnt logged in -->
-      <router-link v-if="!user" to = "/signup" class="button">Sign Up</router-link>
-      <router-link v-if="!user" to = "/login" class="button">Log In</router-link>
+      <router-link 
+       v-if="!user" 
+       :to = "{ path: '/signup', query: { redirect: $route.fullPath } }"
+       class="button">
+       Sign Up
+      </router-link>
+      <router-link 
+       v-if="!user" 
+       :to = "{ path: '/login', query: { redirect: $route.fullPath } }"
+       class="button">
+       Log In
+      </router-link>
 
       <!-- if user logged in -->
       <button v-else @click="logout" class="button">
