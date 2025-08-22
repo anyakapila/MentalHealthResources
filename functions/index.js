@@ -45,6 +45,7 @@ app.post('/api/create', async (req, res) => {
 // saveArticle api
 app.post('/api/saveArticle', async (req, res) => {
     try {
+
       // get id token from auth header
       const authHeader = req.headers.authorization || '';
       if (!authHeader.startsWith('Bearer ')) {
@@ -58,13 +59,14 @@ app.post('/api/saveArticle', async (req, res) => {
 
       // get article id from request body
       const { articleId } = req.body;
-      if (!articleId) {
+      if (!articleId || typeof articleId !== 'string' || articleId.trim() === '') {
         return res.status(400).send('Missing articleId in request body');
       }
 
-      // check if article exists in articlesData
-      const articleExists = articlesData.articles.some(article => article.id === articleId);
-      if (!articleExists) {
+      const articleRef = database.collection('articles').doc(articleId.toString());
+      const articleDoc = await articleRef.get();
+
+      if (!articleDoc.exists) {
         return res.status(404).send('Article not found');
       }
 
@@ -140,5 +142,87 @@ app.get('/api/getSavedArticles', async (req, res) => {
       return res.status(500).send(error.message);
     }
 });
+
+exports.seedArticles = functions.https.onRequest(async (req, res) => {
+  try {
+    const batch = database.batch();
+
+    if (!articlesData.articles || !Array.isArray(articlesData.articles)) {
+      return res.status(400).send('Invalid articles.json structure');
+    }
+
+    // seed categories
+    if (articlesData.categories && Array.isArray(articlesData.categories)) {
+      articlesData.categories.forEach(category => {
+        const catRef = database.collection('categories').doc(category.id.toString());
+        batch.set(catRef,{
+          ...category,
+        });
+      });
+    }
+
+    // seed articles
+
+    articlesData.articles.forEach(article => {
+      const docRef = database.collection('articles').doc(article.id.toString());
+      batch.set(docRef, {
+        ...article
+      });
+    });
+
+    await batch.commit();
+    return res.status(200).send('Articles & categories seeded successfully!');
+  } catch (error) {
+    console.error('Error seeding:', error);
+    return res.status(500).send(error.message);
+  }
+});
+
+exports.manageArticles = functions.https.onRequest(async (req, res) => {
+  try {
+    const { action, articleId } = req.body;
+
+    if (!action || !['add', 'update', 'delete'].includes(action) || !articleId) {
+      return res.status(400).send('Missing action or articleId');
+    }
+
+    const articleRef = database.collection('articles')
+
+    if (action === 'add') {
+      if (!articleId || !article.id) {
+        return res.status(400).send('Missing articleId in request body');
+      }
+      await articleRef.doc(article.id.toString()).set({
+        ...articleId
+      });
+      return res.status(200).send('Article added successfully');
+    } else if (action === 'update') {
+      if (!articleId || !article.id) {
+        return res.status(400).send('Missing articleId in request body');
+      }
+      const docRef = articleRef.doc(article.id.toString());
+      const docSnap = await docRef.get();
+      if (!docSnap.exists) {
+        return res.status(404).send('Article not found for update');
+      }
+      await docRef.update(article);
+      return res.status(200).send('Article updated successfully');
+    } else if (action === 'delete') {
+      if (!articleId || !article.id) {
+        return res.status(400).send('Missing articleId in request body');
+      }
+      const docRef = articleRef.doc(article.id.toString());
+      const docSnap = await docRef.get();
+      if (!docSnap.exists) {
+        return res.status(404).send('Article not found for deletion');
+      }
+      await docRef.delete();
+      return res.status(200).send('Article deleted successfully');
+    }
+  } catch (error) {
+    console.error('Error managing article:', error);
+    return res.status(500).send(error.message);
+  }
+})
 
 exports.app = functions.https.onRequest(app);

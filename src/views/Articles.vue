@@ -30,8 +30,8 @@
   </div>
  </li>
 </ul>
-<p v-if="!filteredArticles.length">No results found.</p>
-<p v-if="!savedArticlesList.length">No saved articles found.</p>
+<p v-if="!showSaved && !filteredArticles.length">No results found.</p>
+<p v-if="showSaved && !savedArticlesList.length">No saved articles found.</p>
 </div>
 </Filter>
 </div>
@@ -49,9 +49,10 @@ const user = ref(null)
 const savedArticles = ref(new Set())
 const showSaved = ref(false)
 
+let unsubscribe = null
 onMounted(() => {
   const auth = getAuth()
-  const unsubscribe = onAuthStateChanged(auth, async (u) => {
+  unsubscribe = onAuthStateChanged(auth, async (u) => {
     user.value = u
     if (u) {
       const idToken = await u.getIdToken()
@@ -69,7 +70,7 @@ onMounted(() => {
   })
 
   onUnmounted(() => {
-    unsubscribe()
+    if (unsubscribe) unsubscribe()
   })
 })
 
@@ -113,7 +114,7 @@ async function toggleArticle(articleId) {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${idToken}`
       },
-      body: JSON.stringify({ articleId })
+      body: JSON.stringify({ articleId: articleId.toString() })
     })
 
     const text = await response.text()
@@ -171,5 +172,15 @@ const savedArticlesList = computed(() =>
 
 .star-button.filled {
   color: var(--color-bigheading);
+}
+
+.success {
+  color: var(--color-text);
+  margin-top: 0.5rem;
+}
+
+.error {
+  color: var(--color-text);
+  margin-top: 0.5rem;
 }
 </style>
