@@ -28,15 +28,15 @@
       <span v-else>Logging out...</span>
       </button>
     </div>
-
-    </div>
+  </div>
     <Nav />
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, onIdTokenChanged, signOut } from "firebase/auth";
 import Nav from '@/components/Nav.vue'
+import { user, isAdmin } from '@/stores/auth'  //reactive store
 
 //props
 defineProps({
@@ -44,14 +44,19 @@ defineProps({
   subtitle: String
 })
 
-//track user auth
-const user = ref(null)
 const loggingOut = ref(false)
 const auth = getAuth()
 
+// track auth state and admin claim
 onMounted(() => {
-  onAuthStateChanged(auth, (currentUser) => {
+  onIdTokenChanged(auth, async (currentUser) => {
     user.value = currentUser
+    if (currentUser) {
+      const token = await currentUser.getIdTokenResult(true)
+      isAdmin.value = !!token.claims.admin
+    } else {
+      isAdmin.value = false
+    }
   })
 })
 

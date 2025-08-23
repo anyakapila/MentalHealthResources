@@ -20,28 +20,6 @@ admin.initializeApp({
 
 const database = admin.firestore();
 
-// simple get endpoint
-app.get('/helloWorld', (req, res) => {
-  return res.status(200).send('Hello World!');
-});
-
-// post /api/create endpoint
-app.post('/api/create', async (req, res) => {
-    try {
-      const { id, item } = req.body;
-
-      if (!id || !item) {
-        return res.status(400).send('Missing id or item in request body');
-      }
-
-      await database.collection('items').doc(id).set({ item });
-      return res.status(200).send('Item created successfully');
-    } catch (error) {
-      console.error(error);
-      return res.status(500).send(error.message);
-    }
-  });
-
 // saveArticle api
 app.post('/api/saveArticle', async (req, res) => {
     try {
@@ -143,8 +121,40 @@ app.get('/api/getSavedArticles', async (req, res) => {
     }
 });
 
+exports.addAdminRole = functions.https.onCall(async (data, context) => {
+  // only allow admin to grant roles
+  if (!context.auth?.token.admin) {
+    throw new functions.https.HttpsError(
+      'permission-denied',
+      'Only admins can add other admins.'
+    );
+  }
+
+  const uid = data.uid;
+  try {
+    await admin.auth().setCustomUserClaims(uid, { admin: true });
+    return { message: `Success! ${uid} is now an admin.`};
+  } catch (err) {
+    throw new functions.https.HttpsError('unknown', err.message, err);
+  }
+});
+
 exports.seedArticles = functions.https.onRequest(async (req, res) => {
   try {
+    // require auth header
+    const authHeader = req.headers.authorization || '';
+    if (!authHeader.startsWith('Bearer ')) {
+      return res.status(401).send('Unauthorized: Missing or invalid Authorization header');
+    }
+
+    // verify token + claims
+    const idToken = authHeader.split('Bearer ')[1];
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+
+    if (!decodedToken.admin) {
+      return res.status(403).send('Forbidden: Admins only');
+    }
+
     const batch = database.batch();
 
     if (!articlesData.articles || !Array.isArray(articlesData.articles)) {
@@ -180,6 +190,20 @@ exports.seedArticles = functions.https.onRequest(async (req, res) => {
 
 exports.manageArticles = functions.https.onRequest(async (req, res) => {
   try {
+    // require auth header
+    const authHeader = req.headers.authorization || '';
+    if (!authHeader.startsWith('Bearer ')) {
+      return res.status(401).send('Unauthorized: Missing or invalid Authorization header');
+    }
+
+    // verify token + claims
+    const idToken = authHeader.split('Bearer ')[1];
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+
+    if (!decodedToken.admin) {
+      return res.status(403).send('Forbidden: Admins only');
+    }
+
     const { action, articleId } = req.body;
 
     if (!action || !['add', 'update', 'delete'].includes(action) || !articleId) {

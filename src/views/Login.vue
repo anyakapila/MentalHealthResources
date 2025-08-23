@@ -28,6 +28,7 @@ import UserForm from '@/components/UserForm.vue';
 import { auth } from '@/firebase';
 import { useRoute, useRouter } from 'vue-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getIdTokenResult } from 'firebase/auth';
 
 export default {
   components: { UserForm },
@@ -75,10 +76,18 @@ export default {
         }
 
         const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
-        console.log('Logged in:', userCredential.user);
+        const user = userCredential.user;
+        console.log('Logged in:', user);
 
-        // grab redirect or fallback to home
-        const redirectPath = this.$route.query.redirect || '/';
+        // get id token result to check claims
+        const tokenResult = await getIdTokenResult(user);
+        let redirectPath = '/';
+
+        if (tokenResult.claims.admin) {
+          redirectPath = '/admin';
+        } else if (this.$route.query.redirect) {
+          redirectPath = this.$route.query.redirect;
+        }
 
         this.successMessage = 'Login successful! Redirecting...';
         

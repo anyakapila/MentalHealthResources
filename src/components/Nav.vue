@@ -5,10 +5,15 @@
       <router-link to="/why">Why?</router-link> |
       <router-link to="/support">Support</router-link> |
       <router-link to="/hotlines">Hotlines</router-link> |
-      <router-link to="/articles">Articles</router-link>
+      <router-link to="/articles">Articles</router-link> |
+      <router-link v-if="isAdmin" to="/admin">Admin</router-link>
     </ul>
     </nav>
 </template>
+
+<script setup> 
+import { isAdmin } from '@/stores/auth' //reactive store
+</script>
 
 <style scoped>
 .navbar {
