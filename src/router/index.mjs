@@ -41,13 +41,13 @@ router.beforeEach(async (to, from, next) => {
     // fetch claims
     const token = await user.getIdTokenResult(true)
     if (token.claims.admin) {
-      next();
+      return next();
     } else {
-      next('/'); // user is not admin
+      return next('/'); // user is not admin
     }
   }
 
-    return next();
+    next();
 });
 
 export default router;

@@ -190,6 +190,11 @@ exports.seedArticles = functions.https.onRequest(async (req, res) => {
 
 exports.manageArticles = functions.https.onRequest(async (req, res) => {
   try {
+
+    if (req.method !== 'POST') {
+      return res.status(405).send('Only POST requests allowed');
+    }
+
     // require auth header
     const authHeader = req.headers.authorization || '';
     if (!authHeader.startsWith('Bearer ')) {
@@ -204,45 +209,41 @@ exports.manageArticles = functions.https.onRequest(async (req, res) => {
       return res.status(403).send('Forbidden: Admins only');
     }
 
-    const { action, articleId } = req.body;
+    //extract req body
+    const { action, articleId, article } = req.body;
 
-    if (!action || !['add', 'update', 'delete'].includes(action) || !articleId) {
-      return res.status(400).send('Missing action or articleId');
+    if (!action)  {
+      return res.status(400).send('Missing action field');
     }
 
-    const articleRef = database.collection('articles')
+    if (!articleId) {
+      return res.status(400).send('Missing articleId field');
+    }
+
+    const articleRef = database.collection('articles').doc(articleId);
 
     if (action === 'add') {
-      if (!articleId || !article.id) {
-        return res.status(400).send('Missing articleId in request body');
+      if (!article || !article.info || !article.url) {
+        return res.status(400).send('Missing article fields in request body');
       }
-      await articleRef.doc(article.id.toString()).set({
-        ...articleId
-      });
-      return res.status(200).send('Article added successfully');
-    } else if (action === 'update') {
-      if (!articleId || !article.id) {
-        return res.status(400).send('Missing articleId in request body');
-      }
-      const docRef = articleRef.doc(article.id.toString());
-      const docSnap = await docRef.get();
-      if (!docSnap.exists) {
-        return res.status(404).send('Article not found for update');
-      }
-      await docRef.update(article);
-      return res.status(200).send('Article updated successfully');
-    } else if (action === 'delete') {
-      if (!articleId || !article.id) {
-        return res.status(400).send('Missing articleId in request body');
-      }
-      const docRef = articleRef.doc(article.id.toString());
-      const docSnap = await docRef.get();
-      if (!docSnap.exists) {
-        return res.status(404).send('Article not found for deletion');
-      }
-      await docRef.delete();
-      return res.status(200).send('Article deleted successfully');
+      await articleRef.set(article, { merge: true });
+      return res.status(200).send(`Article ${articleId} added successfully`);
     }
+
+    if (action === 'update') {
+      if (!article) {
+        return res.status(400).send('Missing article object for update');
+      }
+      await articleRef.set(article, { merge: true });
+      return res.status(200).send(`Article ${articleId} updated successfully`);
+    }
+
+    if (action === 'delete') {
+      await articleRef.delete();
+      return res.status(200).send(`Article ${articleId} deleted successfully`);
+    }
+
+    return res.status(400).send('Invalid action. Must be one of add, update, delete.');
   } catch (error) {
     console.error('Error managing article:', error);
     return res.status(500).send(error.message);
