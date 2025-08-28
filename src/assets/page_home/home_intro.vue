@@ -1,7 +1,7 @@
 <template>
 <section class = "intro">
     <div class = "introcontent">
-        <h3 class = "introtitle">You're Never Alone.</h3>
+        <h3 class = "introtitle">You're Not Alone.</h3>
         <h4 class = "introsubtitle">We're here to help you through this journey.<br>Access our library of resources at SupportShelf.</h4>
         <div class = "buttons">
             <button class = "cta-button" @click="gotoHotlines">Hotlines for Immediate Help</button>

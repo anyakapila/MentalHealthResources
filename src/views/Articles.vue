@@ -56,7 +56,7 @@ onMounted(() => {
     user.value = u
     if (u) {
       const idToken = await u.getIdToken()
-      const res = await fetch('http://127.0.0.1:5001/anya-mentalhealthresources/us-central1/app/api/getSavedArticles', {
+      const res = await fetch('https://us-central1-anya-mentalhealthresources.cloudfunctions.net/app/api/getSavedArticles', {
         headers: { Authorization: `Bearer ${idToken}` }
       })
       if (res.ok) {
@@ -107,8 +107,7 @@ async function toggleArticle(articleId) {
       return
     }
 
-    const response = await fetch('http://127.0.0.1:5001/anya-mentalhealthresources/us-central1/app/api/saveArticle', {
-    // https://us-central1-anya-mentalhealthresources.cloudfunctions.net/app/api/saveArticle
+    const response = await fetch('https://us-central1-anya-mentalhealthresources.cloudfunctions.net/app/api/saveArticle', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

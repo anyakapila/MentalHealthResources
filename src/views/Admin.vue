@@ -78,7 +78,7 @@ const showManageForms = ref(false); //toggle for forms
 async function seedArticles() {
     const token = await auth.currentUser.getIdToken()
     const res = await fetch(
-        'http://127.0.0.1:5001/anya-mentalhealthresources/us-central1/seedArticles',
+        'https://us-central1-anya-mentalhealthresources.cloudfunctions.net/app/api/seedArticles',
         {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${token}` }
@@ -95,7 +95,7 @@ async function seedArticles() {
 async function makeAdmin() {
     const token = await auth.currentUser.getIdToken()
     const res = await fetch(
-        'http://127.0.0.1:5001/anya-mentalhealthresources/us-central1/makeAdmin',
+        'https://us-central1-anya-mentalhealthresources.cloudfunctions.net/app/api/addAdminRole',
         {
             method: 'POST',
             headers: {
@@ -186,7 +186,7 @@ async function submit(action) {
     try {
         const token = await auth.currentUser.getIdToken();
         const res = await fetch(
-            'http://127.0.0.1:5001/anya-mentalhealthresources/us-central1/manageArticles',
+            'https://us-central1-anya-mentalhealthresources.cloudfunctions.net/app/api/manageArticles',
             {
                 method: 'POST',
                 headers: {
