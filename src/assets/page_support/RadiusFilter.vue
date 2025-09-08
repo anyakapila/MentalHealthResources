@@ -31,7 +31,7 @@ const props = defineProps({
     unit: String // 'meters' or 'miles'
 });
 
-const emit = defineEmits(['update:modelValue', 'toggleUnit']);
+const emit = defineEmits(['update:modelValue', 'update:unit', 'toggleUnit']);
 
 // input value shown in miles or meters
 const inputValue = ref(1);
@@ -56,6 +56,9 @@ function handleInput(val) {
     ? num * 1609.344
     : num;
 
+function handleToggleUnit() {
+  emit('toggleUnit');
+}
   emit('update:modelValue', Math.round(meters));
 }
 

@@ -74,7 +74,7 @@ defineExpose({ scrollToCard });
 }
 
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .list-panel {
     width: 100%;
     height: auto;

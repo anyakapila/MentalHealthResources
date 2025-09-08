@@ -23,16 +23,19 @@
 </template> 
 
 <script setup>
-const { title, options, modelValue } = defineProps({
+const props = defineProps({
   title: String,
   options: Array,
-  modelValue: Array
+  modelValue: {
+    type: Array,
+    default: () => []
+  }
 });
 
 const emit = defineEmits(['update:modelValue', 'clear']);
 
 function handleToggle(value) {
-  const updated = [...modelValue]; 
+  const updated = [...props.modelValue]; 
   const index = updated.indexOf(value);
   if (index > -1) {
     updated.splice(index, 1);
