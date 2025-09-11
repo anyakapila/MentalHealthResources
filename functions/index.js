@@ -105,7 +105,7 @@ app.post("/api/seedArticles", async (req, res) => {
       return res.status(403).send("Forbidden: Admins only");
     }
 
-    const articlesData = require("./data/articles.json");
+    const articlesData = require("./articles.json");
     if (!articlesData.articles || !Array.isArray(articlesData.articles)) {
       return res.status(400).send("Invalid articles.json structure");
     }
@@ -115,14 +115,14 @@ app.post("/api/seedArticles", async (req, res) => {
     // seed categories
     if (Array.isArray(articlesData.categories)) {
       articlesData.categories.forEach((cat) => {
-        const ref = db.collection("categories").doc(cat.id.toString());
+        const ref = db.collection("categories").doc(cat.id);
         batch.set(ref, { ...cat });
       });
     }
 
     // seed articles
     articlesData.articles.forEach((article) => {
-      const ref = db.collection("articles").doc(article.id.toString());
+      const ref = db.collection("articles").doc(article.id);
       batch.set(ref, { ...article });
     });
 
@@ -145,9 +145,22 @@ app.post("/api/manageArticles", async (req, res) => {
       return res.status(403).send("Forbidden: Admins only");
     }
 
-    const { action, articleId, article } = req.body;
-    if (!action || !articleId) {
-      return res.status(400).send("Missing action or articleId");
+    let { action, articleId, article } = req.body;
+
+    if (!action) {
+      return res.status(400).send("Missing action");
+    }
+
+    if (action === "add" && !articleId) {
+      const ref = db.collection("articles").doc(); // auto id
+      articleId = ref.id;
+      article = { ...article, id: articleId };
+      await ref.set(article);
+      return res.status(200).send(`Article ${articleId} added successfully`);
+    }
+
+    if (!articleId) {
+      return res.status(400).send("Missing articleId");
     }
 
     const ref = db.collection("articles").doc(articleId);
@@ -157,14 +170,14 @@ app.post("/api/manageArticles", async (req, res) => {
         if (!article?.info || !article?.url) {
           return res.status(400).send("Missing article fields");
         }
-        await ref.set(article, { merge: true });
+        await ref.set({ ...article, id: articleId }, { merge: true });
         return res.status(200).send(`Article ${articleId} added successfully`);
 
       case "update":
         if (!article) {
           return res.status(400).send("Missing article object for update");
         }
-        await ref.set(article, { merge: true });
+        await ref.set({ ...article, id: articleId }, { merge: true });
         return res.status(200).send(`Article ${articleId} updated successfully`);
 
       case "delete":

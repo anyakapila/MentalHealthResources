@@ -3,230 +3,233 @@
   "version": "0.0.1",
   "articles": [
     {
-      "id": 1,
+      "id": "f5f2c282-2f61-4f5e-bfa3-259e0c68a4a1",
       "title": "Taking on the Stigma of ADHD",
       "info": "National Library of Medicine",
       "url": "https://magazine.medlineplus.gov/article/taking-on-the-stigma-of-adhd/",
       "categories": [
-        1, 2
+        "ca8358e2-326f-4a9a-a7fc-dfbde11a8239",
+        "aa8a98e3-0e57-4f7d-879e-c804ec0659c1"
       ]
     },
     {
-     "id": 2,
+     "id": "e69e3cf0-89d7-4c0f-9c62-8cc0f7fd7889",
       "title": "Pathway to Effective Treatment for Common Mental and Substance Use Disorders in the World Mental Health Surveys: Perceived Need for Treatment",
       "info": "International Journal of Mental Health Systems",
       "url": "https://ijmhs.biomedcentral.com/articles/10.1186/s13033-025-00666-w",
       "categories": [
-        4
+        "69f9423e-5597-44b1-bbfa-45a5b4eb213c"
       ] 
     },
     {
-     "id": 3,
+     "id": "2373152a-9c43-4d79-aec7-53f98213bfa0",
       "title": "15 Things to Do If You're Feeling Lonely",
       "info": "Mental Health Foundation",
       "url": "https://www.mentalhealth.org.uk/publications/15-things-do-if-youre-feeling-lonely",
       "categories": [
-        3
+        "6aeb8933-826b-40da-8f4c-0ff17a279e9e"
       ]
     },
     {
-      "id": 4,
+      "id": "d5f7d152-85f9-4a62-86a6-92eaba3e7ecf",
       "title": "Caring for Your Mental Health",
       "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
       "categories": [
-        3
+        "6aeb8933-826b-40da-8f4c-0ff17a279e9e"
       ]
     },
     {
-      "id": 5,
+      "id": "f57cb5dd-2f07-46ac-9392-98b88a648748",
       "title": "Depression",
       "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/topics/depression",
       "categories": [
-        5
+        "8e8a8a3f-0218-4b2e-9d68-3c1e55e9c468"
       ]
     },
     {
-      "id": 6,
+      "id": "d07e37c2-7833-4829-8b49-4f57dba2467f",
       "title": "What is Depression and What Can I Do About It?",
       "info": "Medical News Today",
       "url": "https://www.medicalnewstoday.com/articles/8933",
       "categories": [
-        5
+        "8e8a8a3f-0218-4b2e-9d68-3c1e55e9c468"
       ]
     },
     {
-      "id": 7,
+      "id": "a8888b37-193f-4c66-81bb-cc12ed8934d3",
       "title": "Bipolar Disorders: An Update on Critical Aspects",
       "info": "The Lancet Regional Health - Europe",
       "url": "https://www.thelancet.com/journals/lanepe/article/PIIS2666-7762(24)00304-1/fulltext",
       "categories": [
-        4, 6
+        "69f9423e-5597-44b1-bbfa-45a5b4eb213c",
+        "2f14e7d9-6c55-4a0d-bc2c-b5ee3af1c3a4"
       ]
     },
     {
-      "id": 8,
+      "id": "e497cbd6-f47a-43cf-96ad-5d3a63725b2c",
       "title": "Mental Health",
       "info": "Harvard Health Publishing - Harvard Medical School",
       "url": "https://www.health.harvard.edu/topics/mental-health",
       "categories": [
-        3
+        "6aeb8933-826b-40da-8f4c-0ff17a279e9e"
       ]
     },
     {
-      "id": 9,
+      "id": "96a978a5-351f-4632-8141-97abf42d77fb",
       "title": "Obsessive-Compulsive Disorder (OCD)",
       "info": "Harvard Health Publishing - Harvard Medical School",
       "url": "https://www.health.harvard.edu/mind-and-mood/obsessive-compulsive-disorder-ocd-a-to-z",
       "categories": [
-        2
+        "aa8a98e3-0e57-4f7d-879e-c804ec0659c1"
       ]
     },
     {
-      "id": 10,
+      "id": "e2c417e7-c67d-42bb-825f-7032fd6c6b41",
       "title": "Stigma, Prejudice and Discrimination Against People with Mental Illness",
       "info": "American Psychiatric Association",
       "url": "https://www.psychiatry.org/patients-families/stigma-and-discrimination",
       "categories": [
-        4
+        "69f9423e-5597-44b1-bbfa-45a5b4eb213c"
       ]
     },
     {
-      "id": 11,
+      "id": "5f45d8bc-08e3-4cc3-b1d4-2d6af9918562",
       "title": "Mental Health of Adolescents",
       "info": "World Health Organization",
       "url": "https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health",
       "categories": [
-        4
+        "69f9423e-5597-44b1-bbfa-45a5b4eb213c"
       ]
     },
     {
-      "id": 12,
+      "id": "7f9c2c11-d0b6-46b9-a509-0327a922a0b1",
       "title": "Managing Stress",
       "info": "Centers for Disease Control and Prevention",
       "url": "https://www.cdc.gov/mental-health/living-with/index.html",
       "categories": [
-        3
+        "6aeb8933-826b-40da-8f4c-0ff17a279e9e"
       ]
     },
     {
-      "id": 13,
+      "id": "87c99154-3f47-4644-ace7-cbb36c76cf4f",
       "title": "11 Healthy Ways to Handle Life's Stressors",
       "info": "American Psychological Association",
       "url": "https://www.apa.org/topics/stress/tips",
       "categories": [
-        3
+        "6aeb8933-826b-40da-8f4c-0ff17a279e9e"
       ]
     },
     {
-      "id": 14,
+      "id": "26e57364-91ab-4ef4-b5d6-7d6cdb7e96a0",
       "title": "Understanding Drug Use and Addiction",
       "info": "National Institute on Drug Abuse",
       "url": "https://nida.nih.gov/publications/drugfacts/understanding-drug-use-addiction",
       "categories": [
-        7
+        "fd4e5f51-1c3d-44b7-8170-f2d62ecaf344"
       ]
     },
     {
-      "id": 15,
+      "id": "47f357a4-99a6-4fa8-bf0d-13e6f7d6b7a2",
       "title": "Risk and Protective Factors of Drug Abuse Among Adolescents: A Systematic Review",
       "info": "BMC Public Health",
       "url": "https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-021-11906-2",
       "categories": [
-        4, 7
+        "69f9423e-5597-44b1-bbfa-45a5b4eb213c",
+        "fd4e5f51-1c3d-44b7-8170-f2d62ecaf344"
       ]
     },
     {
-      "id": 16,
+      "id": "f9b52c3f-6e1d-42f1-bc9a-5365b18a266d",
       "title": "Anxiety Disorders",
       "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
       "categories": [
-        8
+        "54f39da7-c59f-4b64-8098-cb66f8dc5d90"
       ]
     },
     {
-      "id": 17,
+      "id": "de5fa8d4-124a-4d0a-87c7-1d3520143c67",
       "title": "Anxiety Disorders: Causes, Symptoms, Treatment & Types",
       "info": "Cleveland Clinic",
       "url": "https://my.clevelandclinic.org/health/diseases/9536-anxiety-disorders",
       "categories": [
-        8
+        "54f39da7-c59f-4b64-8098-cb66f8dc5d90"
       ]
     },
     {
-      "id": 18,
+      "id": "1d01ed3b-3322-44d9-b1d1-b6483f73cfbb",
       "title": "Anxiety and Panic Attacks",
       "info": "Mind",
       "url": "https://www.mind.org.uk/information-support/types-of-mental-health-problems/anxiety-and-panic-attacks/about-anxiety/",
       "categories": [
-        8
+        "54f39da7-c59f-4b64-8098-cb66f8dc5d90"
       ]
     },
     {
-      "id": 19,
+      "id": "b77039a5-7cc4-45ee-8bb9-b5d4c96320d3",
       "title": "Eating Disorders: What You Need to Know",
       "info": "National Institute of Mental Health",
       "url": "https://www.nimh.nih.gov/health/publications/eating-disorders",
       "categories": [
-        9
+        "cb0595ff-3a0d-43cb-a2cb-1c223d6c5b0f"
       ]
     },
     {
-      "id": 20,
+      "id": "57c7d44d-426c-42b2-8e1a-d1bfa3783e7d",
       "title": "Anorexia Nervosa: What It Is, Symptoms & Treatment",
       "info": "Cleveland Clinic",
       "url": "https://my.clevelandclinic.org/health/diseases/9794-anorexia-nervosa",
       "categories": [
-        9
+        "cb0595ff-3a0d-43cb-a2cb-1c223d6c5b0f"
       ]
     },
     {
-      "id": 21,
+      "id": "e6c0b4e0-07e4-4c43-b7d6-d14a71f19633",
       "title": "Bulimia Nervosa: What It Is, Symptoms & Treatment",
       "info": "Cleveland Clinic",
       "url": "https://my.clevelandclinic.org/health/diseases/9795-bulimia-nervosa",
       "categories": [
-        9
+        "cb0595ff-3a0d-43cb-a2cb-1c223d6c5b0f"
       ]
     }
   ],
 "categories": [
     {
-      "id": 1,
+      "id": "ca8358e2-326f-4a9a-a7fc-dfbde11a8239",
       "name": "ADHD"
     },
     {
-      "id": 2,
+      "id": "aa8a98e3-0e57-4f7d-879e-c804ec0659c1",
       "name": "OCD"
     },
     {
-      "id": 3,
+      "id": "6aeb8933-826b-40da-8f4c-0ff17a279e9e",
       "name": "Tips for Managing Your Mental Health"
     },
     {
-      "id": 4,
+      "id": "69f9423e-5597-44b1-bbfa-45a5b4eb213c",
       "name": "Studies and Research"
     },
     {
-      "id": 5,
+      "id": "8e8a8a3f-0218-4b2e-9d68-3c1e55e9c468",
       "name": "Depression"
     },
     {
-      "id": 6,
+      "id": "2f14e7d9-6c55-4a0d-bc2c-b5ee3af1c3a4",
       "name": "Bipolar Disorder"
     },
     {
-      "id": 7,
+      "id": "fd4e5f51-1c3d-44b7-8170-f2d62ecaf344",
       "name": "Substance Abuse"
     },
     {
-      "id": 8,
+      "id": "54f39da7-c59f-4b64-8098-cb66f8dc5d90",
       "name": "Anxiety Disorders"
     },
     {
-      "id": 9,
+      "id": "cb0595ff-3a0d-43cb-a2cb-1c223d6c5b0f",
       "name": "Eating Disorders"
     }
   ]
